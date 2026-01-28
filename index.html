@@ -10,32 +10,23 @@
 
 <style>
 *{box-sizing:border-box}
+body{margin:0;font-family:Arial;background:#f4f6f8}
 
-body{
-  margin:0;
-  font-family:Arial;
-  background:#f4f6f8
-}
-
+/* HEADER */
 header{
   background:linear-gradient(90deg,#0b5ed7,#2fb344);
   padding:40px 20px;
   text-align:center;
   color:#fff
 }
-
 header img{
   max-height:180px;
   animation:pulse 2.5s infinite
 }
-
 @keyframes pulse{50%{transform:scale(1.06)}}
 
-.container{
-  padding:15px;
-  max-width:900px;
-  margin:auto
-}
+/* CONTAINER */
+.container{padding:15px;max-width:900px;margin:auto}
 
 /* BUSCA */
 .search input{
@@ -43,7 +34,7 @@ header img{
   padding:14px;
   border-radius:10px;
   border:1px solid #ccc;
-  margin-bottom:15px
+  margin-bottom:20px
 }
 
 /* CATEGORIAS */
@@ -53,7 +44,6 @@ header img{
   gap:12px;
   margin-bottom:20px
 }
-
 .cat{
   background:#fff;
   padding:18px;
@@ -74,7 +64,6 @@ header img{
   position:relative;
   display:none
 }
-
 .card.ativo{display:block}
 
 .empresa-topo{
@@ -82,13 +71,13 @@ header img{
   align-items:center;
   gap:12px
 }
-
 .logo-empresa{
   width:55px;
   height:55px;
   object-fit:contain
 }
 
+/* SELO */
 .selo{
   position:absolute;
   top:10px;
@@ -113,125 +102,114 @@ header img{
   text-decoration:none;
   font-weight:bold
 }
-
 .btn.menu{background:#0b5ed7}
 .btn.install{background:#0b5ed7}
 
-footer{
-  text-align:center;
-  padding:20px;
-  color:#777
-}
-
+footer{text-align:center;padding:20px;color:#777}
 a{text-decoration:none;color:inherit}
+
+/* SLIDER */
+.slide{display:none}
 </style>
 </head>
 
 <body>
 
 <header>
-  <img src="logo.png">
-  <h1>Progresso Online</h1>
-  <p>Guia digital de empresas de Novo Progresso e região</p>
+<img src="logo.png">
+<h1>Progresso Online</h1>
+<p>Guia digital de empresas de Novo Progresso e região</p>
 </header>
 
 <div class="container">
 
-<!-- BUSCA -->
 <div class="search">
-  <input id="buscaEmpresa" placeholder="O que você procura em Novo Progresso?">
+<input id="buscaEmpresa" placeholder="O que você procura em Novo Progresso?">
 </div>
 
-<!-- CATEGORIAS -->
 <div class="categories">
-  <div class="cat" onclick="mostrar('alimentacao')">🍔 Alimentação</div>
-  <div class="cat" onclick="mostrar('saude')">🏥 Saúde</div>
-  <div class="cat" onclick="mostrar('comercio')">🛒 Comércio</div>
-  <div class="cat" onclick="mostrar('servicos')">💻 Serviços</div>
-  <div class="cat" onclick="mostrar('automotivo')">🚗 Automotivo</div>
-  <div class="cat" onclick="mostrar('educacao')">🏫 Educação</div>
+<div class="cat" onclick="mostrar('alimentacao')">🍔 Alimentação</div>
+<div class="cat" onclick="mostrar('saude')">🏥 Saúde</div>
+<div class="cat" onclick="mostrar('comercio')">🛒 Comércio</div>
+<div class="cat" onclick="mostrar('servicos')">💻 Serviços</div>
+<div class="cat" onclick="mostrar('automotivo')">🚗 Automotivo</div>
+<div class="cat" onclick="mostrar('educacao')">🏫 Educação</div>
 </div>
 
-<!-- EMPRESAS -->
+<!-- PARCEIROS -->
 <a href="empresas/bls.html">
-<div class="card empresa alimentacao ativo">
-  <span class="selo">PARCEIRA</span>
-  <div class="empresa-topo">
-    <img src="logos/bls.png" class="logo-empresa">
-    <strong>BLS REPRESENTAÇÕES</strong>
-  </div>
-  <p>Conservas, temperos e condimentos.</p>
+<div class="card empresa alimentacao slide ativo">
+<span class="selo">PARCEIRA</span>
+<div class="empresa-topo">
+<img src="logos/bls.png" class="logo-empresa">
+<strong>BLS REPRESENTAÇÕES</strong>
+</div>
+<p>Conservas, temperos e condimentos.</p>
 </div>
 </a>
 
 <a href="empresas/online.html">
-<div class="card empresa servicos ativo">
-  <span class="selo">PARCEIRA</span>
-  <div class="empresa-topo">
-    <img src="logos/online.png" class="logo-empresa">
-    <strong>Online - Infraestrutura e Tecnologia</strong>
-  </div>
-  <p>Soluções em informática.</p>
+<div class="card empresa servicos slide ativo">
+<span class="selo">PARCEIRA</span>
+<div class="empresa-topo">
+<img src="logos/online.png" class="logo-empresa">
+<strong>Online - Infraestrutura e Tecnologia</strong>
+</div>
+<p>Soluções em informática.</p>
 </div>
 </a>
 
-<!-- MENU -->
-<a class="btn" href="https://wa.me/5593984032129">
-📢 Anuncie sua empresa
-</a>
-
-<a class="btn menu" href="vagas/index.html">
-💼 Vagas de Emprego
-</a>
-
-<a class="btn install" id="installBtn" style="display:none;">
-📲 Instalar App Progresso Online
-</a>
+<a class="btn" href="https://wa.me/5593984032129">📢 Anuncie sua empresa</a>
+<a class="btn menu" href="vagas/index.html">💼 Vagas de Emprego</a>
+<a class="btn install" id="installBtn" style="display:none;">📲 Instalar App</a>
 
 </div>
 
 <footer>© 2026 - Progresso Online</footer>
 
 <script>
-/* FILTRO CATEGORIA */
+/* FILTRO */
 function mostrar(cat){
   document.querySelectorAll('.empresa').forEach(e=>{
-    e.classList.remove('ativo');
-    if(e.classList.contains(cat)) e.classList.add('ativo');
+    e.classList.toggle('ativo', e.classList.contains(cat));
   });
 }
 
 /* BUSCA */
-document.getElementById('buscaEmpresa').oninput = e => {
-  const termo = e.target.value.toLowerCase();
+document.getElementById('buscaEmpresa').oninput = e=>{
+  const t=e.target.value.toLowerCase();
   document.querySelectorAll('.empresa').forEach(emp=>{
-    emp.classList.toggle(
-      'ativo',
-      emp.innerText.toLowerCase().includes(termo)
-    );
+    emp.classList.toggle('ativo', emp.innerText.toLowerCase().includes(t));
   });
 };
 
-/* BOTÃO INSTALAR APP */
+/* SLIDER */
+let i=0;
+setInterval(()=>{
+  const s=document.querySelectorAll('.slide');
+  s.forEach(e=>e.style.display='none');
+  if(s.length){
+    i=(i+1)%s.length;
+    s[i].style.display='block';
+  }
+},4000);
+
+/* PWA */
 let deferredPrompt;
-const installBtn = document.getElementById('installBtn');
+const installBtn=document.getElementById('installBtn');
 
-window.addEventListener('beforeinstallprompt', e => {
+window.addEventListener('beforeinstallprompt',e=>{
   e.preventDefault();
-  deferredPrompt = e;
-  installBtn.style.display = 'block';
-
-  installBtn.onclick = () => {
+  deferredPrompt=e;
+  installBtn.style.display='block';
+  installBtn.onclick=()=>{
     deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(() => {
-      installBtn.style.display = 'none';
-    });
+    deferredPrompt.userChoice.then(()=>installBtn.style.display='none');
   };
 });
 
-/* SERVICE WORKER */
-if("serviceWorker" in navigator){
-  navigator.serviceWorker.register("service-worker.js");
+if('serviceWorker'in navigator){
+  navigator.serviceWorker.register('service-worker.js');
 }
 </script>
 
