@@ -13,6 +13,7 @@ body{
   margin:0;
   font-family:Arial, sans-serif;
   background:#f4f6f8;
+  color:#333;
 }
 
 /* HEADER */
@@ -24,12 +25,14 @@ header{
 }
 
 header img{
-  max-height:160px;
+  max-height:180px;
   animation:pulse 2.5s infinite;
 }
 
 @keyframes pulse{
+  0%{transform:scale(1)}
   50%{transform:scale(1.06)}
+  100%{transform:scale(1)}
 }
 
 /* CONTAINER */
@@ -42,6 +45,7 @@ header img{
   border-radius:10px;
   border:1px solid #ccc;
   margin-bottom:15px;
+  font-size:16px;
 }
 
 /* CATEGORIAS */
@@ -62,12 +66,12 @@ header img{
   box-shadow:0 3px 8px rgba(0,0,0,.1);
 }
 
-/* CARD EMPRESA */
+/* CARDS */
 .card{
   background:#fff;
   padding:15px;
   border-radius:14px;
-  margin-bottom:15px;
+  margin-top:15px;
   box-shadow:0 3px 8px rgba(0,0,0,.1);
   position:relative;
 }
@@ -88,65 +92,40 @@ header img{
   position:absolute;
   top:10px;
   right:10px;
-  background:#2fb344;
+  background:linear-gradient(45deg,#0b5ed7,#2fb344);
   color:#fff;
-  padding:5px 12px;
+  padding:6px 12px;
   border-radius:20px;
   font-size:12px;
+  animation:pulse 1.5s infinite;
 }
 
 /* SLIDER */
 .slide{display:none}
 
-/* BOTÕES */
-.btn{
-  display:block;
-  padding:14px;
-  background:#0b5ed7;
-  color:#fff;
-  text-align:center;
-  border-radius:10px;
-  font-weight:bold;
-  text-decoration:none;
-  margin-top:10px;
-}
-
 /* AVATAR FLUTUANTE */
-.avatar-float{
+.avatar-fixo{
   position:fixed;
   bottom:20px;
   right:20px;
-  z-index:999;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  text-decoration:none;
+  width:95px;
+  z-index:9999;
 }
 
-.avatar-float img{
-  width:90px;
-  animation:float 3s ease-in-out infinite;
+.avatar-fixo img{
+  width:100%;
+  animation:pulse 2s infinite;
+  cursor:pointer;
 }
 
-.avatar-msg{
-  background:#0b5ed7;
-  color:#fff;
-  padding:10px 14px;
-  border-radius:20px;
-  font-size:14px;
-  font-weight:bold;
-  box-shadow:0 4px 10px rgba(0,0,0,.2);
-}
-
-@keyframes float{
-  50%{transform:translateY(-10px)}
-}
-
+/* FOOTER */
 footer{
   text-align:center;
   padding:20px;
   color:#777;
 }
+
+a{text-decoration:none;color:inherit}
 </style>
 </head>
 
@@ -160,58 +139,64 @@ footer{
 
 <div class="container">
 
-<div class="search">
-  <input id="buscaEmpresa" placeholder="O que você procura em Novo Progresso?">
-</div>
-
-<div class="categories">
-  <div class="cat" onclick="mostrar('alimentacao')">🍔 Alimentação</div>
-  <div class="cat" onclick="mostrar('servicos')">💻 Serviços</div>
-  <div class="cat" onclick="location.href='vagas/index.html'">💼 Vagas de Emprego</div>
-</div>
-
-<!-- EMPRESAS PARCEIRAS (SLIDER) -->
-
-<a href="empresas/bls.html">
-  <div class="card empresa alimentacao slide">
-    <span class="selo">Parceira</span>
-    <div class="empresa-topo">
-      <img src="logos/bls.png" class="logo-empresa">
-      <strong>BLS REPRESENTAÇÕES</strong>
-    </div>
-    <p>Conservas, temperos e condimentos.</p>
+  <!-- BUSCA -->
+  <div class="search">
+    <input id="buscaEmpresa" placeholder="O que você procura em Novo Progresso?">
   </div>
-</a>
 
-<a href="empresas/online.html">
-  <div class="card empresa servicos slide">
-    <span class="selo">Parceira</span>
-    <div class="empresa-topo">
-      <img src="logos/online.png" class="logo-empresa">
-      <strong>Online - Infraestrutura e Tecnologia</strong>
-    </div>
-    <p>Soluções em informática.</p>
+  <!-- CATEGORIAS -->
+  <div class="categories">
+    <div class="cat" onclick="mostrar('alimentacao')">🍔 Alimentação</div>
+    <div class="cat" onclick="mostrar('saude')">🏥 Saúde</div>
+    <div class="cat" onclick="mostrar('comercio')">🛒 Comércio</div>
+    <div class="cat" onclick="mostrar('servicos')">💻 Serviços</div>
+    <div class="cat" onclick="mostrar('automotivo')">🚗 Automotivo</div>
+    <div class="cat" onclick="mostrar('educacao')">🏫 Educação</div>
+    <div class="cat" onclick="window.location.href='vagas/index.html'">💼 Vagas de Emprego</div>
   </div>
-</a>
 
-<a class="btn" id="installBtn" style="display:none;">
-  📲 Instalar App Progresso Online
-</a>
+  <!-- EMPRESAS -->
+  <a href="empresas/bls.html">
+    <div class="card empresa alimentacao slide">
+      <span class="selo">PARCEIRA</span>
+      <div class="empresa-topo">
+        <img src="logos/bls.png" class="logo-empresa">
+        <strong>BLS REPRESENTAÇÕES</strong>
+      </div>
+      <p>Conservas, temperos e condimentos.</p>
+    </div>
+  </a>
+
+  <a href="empresas/online.html">
+    <div class="card empresa servicos slide">
+      <span class="selo">PARCEIRA</span>
+      <div class="empresa-topo">
+        <img src="logos/online.png" class="logo-empresa">
+        <strong>Online - Infraestrutura e Tecnologia</strong>
+      </div>
+      <p>Soluções em informática.</p>
+    </div>
+  </a>
 
 </div>
 
-<footer>© 2026 - Progresso Online</footer>
+<footer>
+© 2026 - Progresso Online
+</footer>
 
-<!-- AVATAR FLUTUANTE -->
-<a href="https://wa.me/5593984032129?text=Olá!%20Quero%20anunciar%20minha%20empresa%20no%20Progresso%20Online."
-   target="_blank"
-   class="avatar-float">
-  <img src="img/avatar-progresso.png">
-  <span class="avatar-msg">Quer anunciar sua empresa?</span>
+<!-- AVATAR / ANUNCIAR -->
+<a href="https://wa.me/5593984032129?text=Olá,%20quero%20anunciar%20minha%20empresa%20no%20Progresso%20Online"
+   class="avatar-fixo">
+  <img src="img/mascote-progresso-online.png" alt="Anunciar empresa">
 </a>
 
 <script>
-// FILTRO
+// LIMPAR HOME
+function limparHome(){
+  document.querySelectorAll('.empresa').forEach(e=>e.style.display='none');
+}
+
+// FILTRO CATEGORIA
 function mostrar(cat){
   document.querySelectorAll('.empresa').forEach(e=>{
     e.style.display = e.classList.contains(cat) ? 'block' : 'none';
@@ -219,32 +204,27 @@ function mostrar(cat){
 }
 
 // BUSCA
-buscaEmpresa.oninput = e=>{
-  let t=e.target.value.toLowerCase();
+document.getElementById('buscaEmpresa').oninput = e=>{
+  const termo = e.target.value.toLowerCase();
   document.querySelectorAll('.empresa').forEach(emp=>{
-    emp.style.display = emp.innerText.toLowerCase().includes(t) ? 'block':'none';
+    emp.style.display = emp.innerText.toLowerCase().includes(termo) ? 'block' : 'none';
   });
-}
+  if(!termo) limparHome();
+};
 
-// SLIDER
-let i=0;
+// SLIDER PARCEIROS
+let slideIndex=0;
 setInterval(()=>{
-  let s=document.querySelectorAll('.slide');
-  s.forEach(e=>e.style.display='none');
-  if(s.length){
-    i=(i+1)%s.length;
-    s[i].style.display='block';
+  const slides=document.querySelectorAll('.slide');
+  slides.forEach(s=>s.style.display='none');
+  if(slides.length){
+    slideIndex=(slideIndex+1)%slides.length;
+    slides[slideIndex].style.display='block';
   }
 },4000);
 
-// PWA
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt',e=>{
-  e.preventDefault();
-  deferredPrompt=e;
-  installBtn.style.display='block';
-  installBtn.onclick=()=>deferredPrompt.prompt();
-});
+// INIT
+document.addEventListener('DOMContentLoaded',limparHome);
 </script>
 
 </body>
