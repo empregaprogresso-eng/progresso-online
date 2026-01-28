@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Progresso Online</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0b5ed7">
+
+<style>
+body{margin:0;font-family:Arial;background:#f4f6f8}
+header{background:linear-gradient(90deg,#0b5ed7,#2fb344);padding:40px;text-align:center;color:#fff}
+header img{max-height:180px;animation:pulse 2.5s infinite}
+@keyframes pulse{50%{transform:scale(1.06)}}
+
+.container{padding:15px}
+
+.search input{
+  width:100%;
+  padding:14px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  margin-bottom:15px;
+}
+
+.categories{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-bottom:20px;
+}
+
+.cat{
+  background:#fff;
+  padding:20px;
+  border-radius:14px;
+  text-align:center;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 3px 8px rgba(0,0,0,.1);
+}
+
+.card{
+  background:#fff;
+  padding:15px;
+  border-radius:14px;
+  margin-top:15px;
+  box-shadow:0 3px 8px rgba(0,0,0,.1);
+  position:relative;
+}
+
+.empresa-topo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo-empresa{
+  width:55px;
+  height:55px;
+  object-fit:contain;
+}
+
+.selo{
+  position:absolute;
+  top:10px;
+  right:10px;
+  background:linear-gradient(45deg,#0b5ed7,#2fb344);
+  color:#fff;
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:12px;
+  animation:pulse 1.5s infinite;
+}
+
+.btn{
+  display:block;
+  margin-top:15px;
+  padding:14px;
+  background:#25D366;
+  color:#fff;
+  text-align:center;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.btn.menu{background:#0b5ed7}
+.btn.install{background:#0b5ed7}
+
+footer{text-align:center;padding:20px;color:#777}
+a{text-decoration:none;color:inherit}
+
+/* SLIDER */
+.slide{display:none}
+</style>
+</head>
+
+<body>
+
+<header>
+  <img src="logo.png">
+  <h1>Progresso Online</h1>
+  <p>Guia digital de empresas de Novo Progresso e região</p>
+</header>
+
+<div class="container">
+
+<!-- BUSCA -->
+<div class="search">
+  <input id="buscaEmpresa" placeholder="O que você procura em Novo Progresso?">
+</div>
+
+<!-- CATEGORIAS -->
+<div class="categories">
+  <div class="cat" onclick="mostrar('alimentacao')">🍔 Alimentação</div>
+  <div class="cat" onclick="mostrar('saude')">🏥 Saúde</div>
+  <div class="cat" onclick="mostrar('comercio')">🛒 Comércio</div>
+  <div class="cat" onclick="mostrar('servicos')">💻 Serviços</div>
+  <div class="cat" onclick="mostrar('automotivo')">🚗 Automotivo</div>
+  <div class="cat" onclick="mostrar('educacao')">🏫 Educação</div>
+</div>
+
+<!-- SLIDER PARCEIROS -->
+
+<a href="empresas/bls.html">
+  <div class="card empresa alimentacao slide">
+    <span class="selo">PARCEIRA</span>
+    <div class="empresa-topo">
+      <img src="logos/bls.png" class="logo-empresa">
+      <strong>BLS REPRESENTAÇÕES</strong>
+    </div>
+    <p>Conservas, temperos e condimentos.</p>
+  </div>
+</a>
+
+<a href="empresas/online.html">
+  <div class="card empresa servicos slide">
+    <span class="selo">PARCEIRA</span>
+    <div class="empresa-topo">
+      <img src="logos/online.png" class="logo-empresa">
+      <strong>Online - Infraestrutura e Tecnologia</strong>
+    </div>
+    <p>Soluções em informática.</p>
+  </div>
+</a>
+
+<!-- MENU -->
+<a class="btn" href="https://wa.me/5593984032129">
+  📢 Anuncie sua empresa
+</a>
+
+<a class="btn menu" href="vagas/index.html">
+  💼 Vagas de Emprego
+</a>
+
+<a class="btn install" id="installBtn" style="display:none;">
+  📲 Instalar App Progresso Online
+</a>
+
+</div>
+
+<footer>
+© 2026 - Progresso Online
+</footer>
+
+<script>
+// LIMPAR HOME
+function limparHome(){
+  document.querySelectorAll('.empresa').forEach(e=>e.style.display='none');
+}
+
+// FILTRO CATEGORIA
+function mostrar(cat){
+  document.querySelectorAll('.empresa').forEach(e=>{
+    e.style.display = e.classList.contains(cat) ? 'block' : 'none';
+  });
+}
+
+// BUSCA
+document.getElementById('buscaEmpresa').oninput = e => {
+  const termo = e.target.value.toLowerCase();
+  document.querySelectorAll('.empresa').forEach(emp=>{
+    emp.style.display = emp.innerText.toLowerCase().includes(termo) ? 'block' : 'none';
+  });
+  if(!termo) limparHome();
+};
+
+// SLIDER PARCEIROS
+let slideIndex = 0;
+function sliderParceiros(){
+  const slides = document.querySelectorAll('.slide');
+  slides.forEach(s=>s.style.display='none');
+  if(slides.length){
+    slideIndex = (slideIndex + 1) % slides.length;
+    slides[slideIndex].style.display = 'block';
+  }
+}
+setInterval(sliderParceiros, 4000);
+
+// INIT
+document.addEventListener('DOMContentLoaded',()=>{
+  limparHome();
+  sliderParceiros();
+});
+
+// BOTÃO INSTALAR APP
+let deferredPrompt;
+const installBtn = document.getElementById('installBtn');
+
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installBtn.style.display = 'block';
+
+  installBtn.onclick = () => {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(() => {
+      installBtn.style.display = 'none';
+    });
+  };
+});
+</script>
+
+</body>
+</html>

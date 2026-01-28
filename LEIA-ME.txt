@@ -1,0 +1,2 @@
+Coloque estes arquivos na mesma pasta do index.html.
+Substitua icon-192.png e icon-512.png pelos ícones do app.
