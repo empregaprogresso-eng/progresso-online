@@ -8,13 +8,44 @@
 <meta name="theme-color" content="#0b5ed7">
 
 <style>
-body{margin:0;font-family:Arial;background:#f4f6f8}
-header{background:linear-gradient(90deg,#0b5ed7,#2fb344);padding:40px;text-align:center;color:#fff}
-header img{max-height:180px;animation:pulse 2.5s infinite}
-@keyframes pulse{50%{transform:scale(1.06)}}
+body{
+  margin:0;
+  font-family:Arial;
+  background:#f4f6f8;
+}
 
+/* ===== HEADER ===== */
+header{
+  background:linear-gradient(90deg,#0b5ed7,#2fb344);
+  padding:45px 20px; /* mais espaço para logo grande */
+  text-align:center;
+  color:#fff;
+}
+
+header img{
+  max-height:170px; /* LOGO AJUSTADA */
+  width:auto;
+  animation:pulse 2.5s infinite;
+}
+
+@keyframes pulse{
+  50%{transform:scale(1.06)}
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 768px){
+  header{
+    padding:35px 15px;
+  }
+  header img{
+    max-height:150px; /* mobile equilibrado */
+  }
+}
+
+/* ===== CONTAINER ===== */
 .container{padding:15px}
 
+/* BUSCA */
 .search input{
   width:100%;
   padding:14px;
@@ -23,6 +54,7 @@ header img{max-height:180px;animation:pulse 2.5s infinite}
   margin-bottom:15px;
 }
 
+/* CATEGORIAS */
 .categories{
   display:grid;
   grid-template-columns:repeat(2,1fr);
@@ -40,6 +72,7 @@ header img{max-height:180px;animation:pulse 2.5s infinite}
   box-shadow:0 3px 8px rgba(0,0,0,.1);
 }
 
+/* CARDS */
 .card{
   background:#fff;
   padding:15px;
@@ -56,8 +89,8 @@ header img{max-height:180px;animation:pulse 2.5s infinite}
 }
 
 .logo-empresa{
-  width:170px;
-  height:170px;
+  width:55px;
+  height:55px;
   object-fit:contain;
 }
 
@@ -73,6 +106,7 @@ header img{max-height:180px;animation:pulse 2.5s infinite}
   animation:pulse 1.5s infinite;
 }
 
+/* BOTÕES */
 .btn{
   display:block;
   margin-top:15px;
@@ -88,7 +122,12 @@ header img{max-height:180px;animation:pulse 2.5s infinite}
 .btn.menu{background:#0b5ed7}
 .btn.install{background:#0b5ed7}
 
-footer{text-align:center;padding:20px;color:#777}
+footer{
+  text-align:center;
+  padding:20px;
+  color:#777;
+}
+
 a{text-decoration:none;color:inherit}
 
 /* SLIDER */
@@ -99,7 +138,7 @@ a{text-decoration:none;color:inherit}
 <body>
 
 <header>
-  <img src="logo.png">
+  <img src="logo.png" alt="Progresso Online">
   <h1>Progresso Online</h1>
   <p>Guia digital de empresas de Novo Progresso e região</p>
 </header>
@@ -121,8 +160,7 @@ a{text-decoration:none;color:inherit}
   <div class="cat" onclick="mostrar('educacao')">🏫 Educação</div>
 </div>
 
-<!-- EMPRESAS PARCEIRAS -->
-
+<!-- EMPRESAS -->
 <a href="empresas/bls.html">
   <div class="card empresa alimentacao slide">
     <span class="selo">PARCEIRA</span>
@@ -145,7 +183,7 @@ a{text-decoration:none;color:inherit}
   </div>
 </a>
 
-<!-- VAGAS DE EMPREGO (SEM CLASSE EMPRESA) -->
+<!-- VAGA -->
 <div class="card vaga">
   <strong>💼 Técnico em Informática</strong>
   <p>Empresa: Online Tecnologia</p>
@@ -163,7 +201,7 @@ a{text-decoration:none;color:inherit}
   💼 Vagas de Emprego
 </a>
 
-<a class="btn install" id="installBtn" style="display:none;">
+<a class="btn install" id="installBtn">
   📲 Instalar App Progresso Online
 </a>
 
@@ -174,13 +212,13 @@ a{text-decoration:none;color:inherit}
 </footer>
 
 <script>
-// LIMPAR HOME (NÃO ESCONDE VAGAS)
+// LIMPAR HOME
 function limparHome(){
   document.querySelectorAll('.empresa').forEach(e=>e.style.display='none');
   document.querySelectorAll('.vaga').forEach(v=>v.style.display='block');
 }
 
-// FILTRO POR CATEGORIA
+// FILTRO
 function mostrar(cat){
   document.querySelectorAll('.empresa').forEach(e=>{
     e.style.display = e.classList.contains(cat) ? 'block' : 'none';
@@ -188,47 +226,46 @@ function mostrar(cat){
 }
 
 // BUSCA
-document.getElementById('buscaEmpresa').oninput = e => {
+buscaEmpresa.oninput = e=>{
   const termo = e.target.value.toLowerCase();
   document.querySelectorAll('.empresa').forEach(emp=>{
-    emp.style.display = emp.innerText.toLowerCase().includes(termo) ? 'block' : 'none';
+    emp.style.display = emp.innerText.toLowerCase().includes(termo)?'block':'none';
   });
   if(!termo) limparHome();
 };
 
-// SLIDER PARCEIROS
-let slideIndex = 0;
-function sliderParceiros(){
-  const slides = document.querySelectorAll('.slide');
+// SLIDER
+let slideIndex=0;
+setInterval(()=>{
+  const slides=document.querySelectorAll('.slide');
   slides.forEach(s=>s.style.display='none');
   if(slides.length){
-    slideIndex = (slideIndex + 1) % slides.length;
-    slides[slideIndex].style.display = 'block';
+    slideIndex=(slideIndex+1)%slides.length;
+    slides[slideIndex].style.display='block';
   }
-}
-setInterval(sliderParceiros, 4000);
+},4000);
 
 // INIT
-document.addEventListener('DOMContentLoaded',()=>{
-  limparHome();
-  sliderParceiros();
-});
+document.addEventListener('DOMContentLoaded',limparHome);
 
-// BOTÃO INSTALAR APP
+// INSTALL APP
 let deferredPrompt;
-const installBtn = document.getElementById('installBtn');
-
-window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault();
-  deferredPrompt = e;
-  installBtn.style.display = 'block';
-
-  installBtn.onclick = () => {
+installBtn.onclick=()=>{
+  if(deferredPrompt){
     deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(() => {
-      installBtn.style.display = 'none';
-    });
-  };
+    deferredPrompt=null;
+  }else{
+    alert(
+      'Para instalar:\n' +
+      '1 Abra no Chrome\n' +
+      '2 Menu ⋮\n' +
+      '3 Adicionar à tela inicial'
+    );
+  }
+};
+window.addEventListener('beforeinstallprompt',e=>{
+  e.preventDefault();
+  deferredPrompt=e;
 });
 </script>
 
