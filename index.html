@@ -4,51 +4,25 @@
 <meta charset="UTF-8">
 <title>Progresso Online</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0b5ed7">
 
 <style>
-body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:#f4f6f8;
-  color:#333;
-}
+body{margin:0;font-family:Arial;background:#f4f6f8}
+header{background:linear-gradient(90deg,#0b5ed7,#2fb344);padding:40px;text-align:center;color:#fff}
+header img{max-height:180px;animation:pulse 2.5s infinite}
+@keyframes pulse{50%{transform:scale(1.06)}}
 
-/* HEADER */
-header{
-  background:linear-gradient(90deg,#0b5ed7,#2fb344);
-  padding:40px 20px;
-  text-align:center;
-  color:#fff;
-}
-
-header img{
-  max-height:180px;
-  animation:pulse 2.5s infinite;
-}
-
-@keyframes pulse{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.06)}
-  100%{transform:scale(1)}
-}
-
-/* CONTAINER */
 .container{padding:15px}
 
-/* BUSCA */
 .search input{
   width:100%;
   padding:14px;
   border-radius:10px;
   border:1px solid #ccc;
   margin-bottom:15px;
-  font-size:16px;
 }
 
-/* CATEGORIAS */
 .categories{
   display:grid;
   grid-template-columns:repeat(2,1fr);
@@ -58,7 +32,7 @@ header img{
 
 .cat{
   background:#fff;
-  padding:18px;
+  padding:20px;
   border-radius:14px;
   text-align:center;
   font-weight:bold;
@@ -66,7 +40,6 @@ header img{
   box-shadow:0 3px 8px rgba(0,0,0,.1);
 }
 
-/* CARDS */
 .card{
   background:#fff;
   padding:15px;
@@ -100,83 +73,99 @@ header img{
   animation:pulse 1.5s infinite;
 }
 
+.btn{
+  display:block;
+  margin-top:15px;
+  padding:14px;
+  background:#25D366;
+  color:#fff;
+  text-align:center;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.btn.menu{background:#0b5ed7}
+.btn.install{background:#0b5ed7}
+
+footer{text-align:center;padding:20px;color:#777}
+a{text-decoration:none;color:inherit}
+
 /* SLIDER */
 .slide{display:none}
-
-/* AVATAR FLUTUANTE */
-.avatar-fixo{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  width:95px;
-  z-index:9999;
-}
-
-.avatar-fixo img{
-  width:100%;
-  animation:pulse 2s infinite;
-  cursor:pointer;
-}
-
-/* FOOTER */
-footer{
-  text-align:center;
-  padding:20px;
-  color:#777;
-}
-
-a{text-decoration:none;color:inherit}
 </style>
 </head>
 
 <body>
 
 <header>
-  <img src="logo.png" alt="Progresso Online">
+  <img src="logo.png">
   <h1>Progresso Online</h1>
   <p>Guia digital de empresas de Novo Progresso e região</p>
 </header>
 
 <div class="container">
 
-  <!-- BUSCA -->
-  <div class="search">
-    <input id="buscaEmpresa" placeholder="O que você procura em Novo Progresso?">
-  </div>
+<!-- BUSCA -->
+<div class="search">
+  <input id="buscaEmpresa" placeholder="O que você procura em Novo Progresso?">
+</div>
 
-  <!-- CATEGORIAS -->
-  <div class="categories">
-    <div class="cat" onclick="mostrar('alimentacao')">🍔 Alimentação</div>
-    <div class="cat" onclick="mostrar('saude')">🏥 Saúde</div>
-    <div class="cat" onclick="mostrar('comercio')">🛒 Comércio</div>
-    <div class="cat" onclick="mostrar('servicos')">💻 Serviços</div>
-    <div class="cat" onclick="mostrar('automotivo')">🚗 Automotivo</div>
-    <div class="cat" onclick="mostrar('educacao')">🏫 Educação</div>
-    <div class="cat" onclick="window.location.href='vagas/index.html'">💼 Vagas de Emprego</div>
-  </div>
+<!-- CATEGORIAS -->
+<div class="categories">
+  <div class="cat" onclick="mostrar('alimentacao')">🍔 Alimentação</div>
+  <div class="cat" onclick="mostrar('saude')">🏥 Saúde</div>
+  <div class="cat" onclick="mostrar('comercio')">🛒 Comércio</div>
+  <div class="cat" onclick="mostrar('servicos')">💻 Serviços</div>
+  <div class="cat" onclick="mostrar('automotivo')">🚗 Automotivo</div>
+  <div class="cat" onclick="mostrar('educacao')">🏫 Educação</div>
+</div>
 
-  <!-- EMPRESAS -->
-  <a href="empresas/bls.html">
-    <div class="card empresa alimentacao slide">
-      <span class="selo">PARCEIRA</span>
-      <div class="empresa-topo">
-        <img src="logos/bls.png" class="logo-empresa">
-        <strong>BLS REPRESENTAÇÕES</strong>
-      </div>
-      <p>Conservas, temperos e condimentos.</p>
+<!-- EMPRESAS PARCEIRAS -->
+
+<a href="empresas/bls.html">
+  <div class="card empresa alimentacao slide">
+    <span class="selo">PARCEIRA</span>
+    <div class="empresa-topo">
+      <img src="logos/bls.png" class="logo-empresa">
+      <strong>BLS REPRESENTAÇÕES</strong>
     </div>
-  </a>
+    <p>Conservas, temperos e condimentos.</p>
+  </div>
+</a>
 
-  <a href="empresas/online.html">
-    <div class="card empresa servicos slide">
-      <span class="selo">PARCEIRA</span>
-      <div class="empresa-topo">
-        <img src="logos/online.png" class="logo-empresa">
-        <strong>Online - Infraestrutura e Tecnologia</strong>
-      </div>
-      <p>Soluções em informática.</p>
+<a href="empresas/online.html">
+  <div class="card empresa servicos slide">
+    <span class="selo">PARCEIRA</span>
+    <div class="empresa-topo">
+      <img src="logos/online.png" class="logo-empresa">
+      <strong>Online - Infraestrutura e Tecnologia</strong>
     </div>
+    <p>Soluções em informática.</p>
+  </div>
+</a>
+
+<!-- VAGAS DE EMPREGO (SEM CLASSE EMPRESA) -->
+<div class="card vaga">
+  <strong>💼 Técnico em Informática</strong>
+  <p>Empresa: Online Tecnologia</p>
+  <a class="btn" href="https://wa.me/5593981244121">
+    📞 Candidatar-se
   </a>
+</div>
+
+<!-- MENU -->
+<a class="btn" href="https://wa.me/5593984032129">
+  📢 Anuncie sua empresa
+</a>
+
+<a class="btn menu" href="vagas/index.html">
+  💼 Vagas de Emprego
+</a>
+
+<a class="btn install" id="installBtn" style="display:none;">
+  📲 Instalar App Progresso Online
+</a>
 
 </div>
 
@@ -184,19 +173,14 @@ a{text-decoration:none;color:inherit}
 © 2026 - Progresso Online
 </footer>
 
-<!-- AVATAR / ANUNCIAR -->
-<a href="https://wa.me/5593984032129?text=Olá,%20quero%20anunciar%20minha%20empresa%20no%20Progresso%20Online"
-   class="avatar-fixo">
-  <img src="img/mascote-progresso-online.png" alt="Anunciar empresa">
-</a>
-
 <script>
-// LIMPAR HOME
+// LIMPAR HOME (NÃO ESCONDE VAGAS)
 function limparHome(){
   document.querySelectorAll('.empresa').forEach(e=>e.style.display='none');
+  document.querySelectorAll('.vaga').forEach(v=>v.style.display='block');
 }
 
-// FILTRO CATEGORIA
+// FILTRO POR CATEGORIA
 function mostrar(cat){
   document.querySelectorAll('.empresa').forEach(e=>{
     e.style.display = e.classList.contains(cat) ? 'block' : 'none';
@@ -204,7 +188,7 @@ function mostrar(cat){
 }
 
 // BUSCA
-document.getElementById('buscaEmpresa').oninput = e=>{
+document.getElementById('buscaEmpresa').oninput = e => {
   const termo = e.target.value.toLowerCase();
   document.querySelectorAll('.empresa').forEach(emp=>{
     emp.style.display = emp.innerText.toLowerCase().includes(termo) ? 'block' : 'none';
@@ -213,18 +197,39 @@ document.getElementById('buscaEmpresa').oninput = e=>{
 };
 
 // SLIDER PARCEIROS
-let slideIndex=0;
-setInterval(()=>{
-  const slides=document.querySelectorAll('.slide');
+let slideIndex = 0;
+function sliderParceiros(){
+  const slides = document.querySelectorAll('.slide');
   slides.forEach(s=>s.style.display='none');
   if(slides.length){
-    slideIndex=(slideIndex+1)%slides.length;
-    slides[slideIndex].style.display='block';
+    slideIndex = (slideIndex + 1) % slides.length;
+    slides[slideIndex].style.display = 'block';
   }
-},4000);
+}
+setInterval(sliderParceiros, 4000);
 
 // INIT
-document.addEventListener('DOMContentLoaded',limparHome);
+document.addEventListener('DOMContentLoaded',()=>{
+  limparHome();
+  sliderParceiros();
+});
+
+// BOTÃO INSTALAR APP
+let deferredPrompt;
+const installBtn = document.getElementById('installBtn');
+
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installBtn.style.display = 'block';
+
+  installBtn.onclick = () => {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(() => {
+      installBtn.style.display = 'none';
+    });
+  };
+});
 </script>
 
 </body>
