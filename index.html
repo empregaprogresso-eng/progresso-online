@@ -10,7 +10,7 @@
 
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial;background:#f4f6f8}
+body{margin:0;font-family:Arial;background:#f4f6f8;color:#333}
 
 /* HEADER */
 header{
@@ -42,7 +42,7 @@ header img{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:12px;
-  margin-bottom:20px
+  margin-bottom:15px
 }
 .cat{
   background:#fff;
@@ -51,7 +51,17 @@ header img{
   text-align:center;
   font-weight:bold;
   cursor:pointer;
-  box-shadow:0 3px 8px rgba(0,0,0,.1)
+  box-shadow:0 3px 8px rgba(0,0,0,.1);
+  transition:.2s
+}
+.cat:hover{transform:scale(1.02)}
+
+/* CONTADOR */
+.contador{
+  text-align:center;
+  font-size:14px;
+  margin-bottom:20px;
+  color:#555
 }
 
 /* CARDS */
@@ -136,7 +146,11 @@ a{text-decoration:none;color:inherit}
 <div class="cat" onclick="mostrar('educacao')">🏫 Educação</div>
 </div>
 
-<!-- PARCEIROS -->
+<div class="contador">
+Total de empresas parceiras: <strong id="totalParceiras">0</strong>
+</div>
+
+<!-- PARCEIRAS -->
 <a href="empresas/bls.html">
 <div class="card empresa alimentacao slide ativo">
 <span class="selo">PARCEIRA</span>
@@ -183,6 +197,12 @@ document.getElementById('buscaEmpresa').oninput = e=>{
   });
 };
 
+/* CONTADOR */
+function atualizarContador(){
+  document.getElementById('totalParceiras').innerText =
+    document.querySelectorAll('.empresa').length;
+}
+
 /* SLIDER */
 let i=0;
 setInterval(()=>{
@@ -211,6 +231,8 @@ window.addEventListener('beforeinstallprompt',e=>{
 if('serviceWorker'in navigator){
   navigator.serviceWorker.register('service-worker.js');
 }
+
+document.addEventListener('DOMContentLoaded', atualizarContador);
 </script>
 
 </body>
