@@ -4,30 +4,72 @@
 <meta charset="UTF-8">
 <title>Progresso Online</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0b5ed7">
 
 <style>
 body{margin:0;font-family:Arial;background:#f4f6f8}
-header{background:linear-gradient(90deg,#0b5ed7,#2fb344);padding:40px;text-align:center;color:#fff}
-header img{max-height:180px;animation:pulse 2.5s infinite}
-@keyframes pulse{50%{transform:scale(1.06)}}
 
+/* ===== TOPO COM MASCOTE ===== */
+.topo{
+  background:linear-gradient(90deg,#0b5ed7,#2fb344);
+  padding:20px;
+  display:flex;
+  align-items:center;
+  color:#fff;
+  position:relative;
+}
+
+.topo-left{
+  position:absolute;
+  left:15px;
+  top:15px;
+}
+
+.mascote-topo{
+  width:65px;
+  animation:pulseMascote 2.5s infinite;
+}
+
+@keyframes pulseMascote{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.08)}
+  100%{transform:scale(1)}
+}
+
+.topo-center{
+  margin:0 auto;
+  text-align:center;
+}
+
+.logo-principal{
+  max-height:120px;
+  animation:pulse 2.5s infinite;
+}
+
+@keyframes pulse{
+  50%{transform:scale(1.06)}
+}
+
+/* ===== CONTAINER ===== */
 .container{padding:15px}
 
+/* BUSCA */
 .search input{
   width:100%;
   padding:14px;
   border-radius:10px;
   border:1px solid #ccc;
-  margin-bottom:15px;
+  margin-bottom:15px
 }
 
+/* CATEGORIAS */
 .categories{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:12px;
-  margin-bottom:20px;
+  margin-bottom:20px
 }
 
 .cat{
@@ -37,42 +79,43 @@ header img{max-height:180px;animation:pulse 2.5s infinite}
   text-align:center;
   font-weight:bold;
   cursor:pointer;
-  box-shadow:0 3px 8px rgba(0,0,0,.1);
+  box-shadow:0 3px 8px rgba(0,0,0,.1)
 }
 
+/* CARDS */
 .card{
   background:#fff;
   padding:15px;
   border-radius:14px;
   margin-top:15px;
   box-shadow:0 3px 8px rgba(0,0,0,.1);
-  position:relative;
+  position:relative
 }
 
 .empresa-topo{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:12px
 }
 
 .logo-empresa{
   width:55px;
   height:55px;
-  object-fit:contain;
+  object-fit:contain
 }
 
 .selo{
   position:absolute;
   top:10px;
   right:10px;
-  background:linear-gradient(45deg,#0b5ed7,#2fb344);
+  background:#2fb344;
   color:#fff;
   padding:6px 12px;
   border-radius:20px;
-  font-size:12px;
-  animation:pulse 1.5s infinite;
+  font-size:12px
 }
 
+/* BOTÕES */
 .btn{
   display:block;
   margin-top:15px;
@@ -82,26 +125,34 @@ header img{max-height:180px;animation:pulse 2.5s infinite}
   text-align:center;
   border-radius:10px;
   text-decoration:none;
-  font-weight:bold;
+  font-weight:bold
 }
-
 .btn.menu{background:#0b5ed7}
 .btn.install{background:#0b5ed7}
 
-footer{text-align:center;padding:20px;color:#777}
-a{text-decoration:none;color:inherit}
-
 /* SLIDER */
 .slide{display:none}
+
+footer{text-align:center;padding:20px;color:#777}
+a{text-decoration:none;color:inherit}
 </style>
 </head>
 
 <body>
 
-<header>
-  <img src="logo.png">
-  <h1>Progresso Online</h1>
-  <p>Guia digital de empresas de Novo Progresso e região</p>
+<!-- TOPO -->
+<header class="topo">
+  <div class="topo-left">
+    <img src="img/mascote-progresso-online.png"
+         class="mascote-topo"
+         alt="Mascote Progresso Online">
+  </div>
+
+  <div class="topo-center">
+    <img src="logo.png" class="logo-principal" alt="Progresso Online">
+    <h1>Progresso Online</h1>
+    <p>Guia digital de empresas de Novo Progresso e região</p>
+  </div>
 </header>
 
 <div class="container">
@@ -119,10 +170,10 @@ a{text-decoration:none;color:inherit}
   <div class="cat" onclick="mostrar('servicos')">💻 Serviços</div>
   <div class="cat" onclick="mostrar('automotivo')">🚗 Automotivo</div>
   <div class="cat" onclick="mostrar('educacao')">🏫 Educação</div>
+  <div class="cat" onclick="window.location.href='vagas/index.html'">💼 Vagas</div>
 </div>
 
-<!-- EMPRESAS PARCEIRAS -->
-
+<!-- EMPRESAS -->
 <a href="empresas/bls.html">
   <div class="card empresa alimentacao slide">
     <span class="selo">PARCEIRA</span>
@@ -145,26 +196,17 @@ a{text-decoration:none;color:inherit}
   </div>
 </a>
 
-<!-- VAGAS DE EMPREGO (SEM CLASSE EMPRESA) -->
-<div class="card vaga">
-  <strong>💼 Técnico em Informática</strong>
-  <p>Empresa: Online Tecnologia</p>
-  <a class="btn" href="https://wa.me/5593981244121">
-    📞 Candidatar-se
-  </a>
-</div>
-
-<!-- MENU -->
+<!-- BOTÕES -->
 <a class="btn" href="https://wa.me/5593984032129">
-  📢 Anuncie sua empresa
+📢 Anuncie sua empresa
 </a>
 
 <a class="btn menu" href="vagas/index.html">
-  💼 Vagas de Emprego
+💼 Vagas de Emprego
 </a>
 
-<a class="btn install" id="installBtn" style="display:none;">
-  📲 Instalar App Progresso Online
+<a class="btn install" id="installBtn">
+📲 Instalar App Progresso Online
 </a>
 
 </div>
@@ -174,13 +216,12 @@ a{text-decoration:none;color:inherit}
 </footer>
 
 <script>
-// LIMPAR HOME (NÃO ESCONDE VAGAS)
+// LIMPAR HOME
 function limparHome(){
   document.querySelectorAll('.empresa').forEach(e=>e.style.display='none');
-  document.querySelectorAll('.vaga').forEach(v=>v.style.display='block');
 }
 
-// FILTRO POR CATEGORIA
+// FILTRO
 function mostrar(cat){
   document.querySelectorAll('.empresa').forEach(e=>{
     e.style.display = e.classList.contains(cat) ? 'block' : 'none';
@@ -188,47 +229,46 @@ function mostrar(cat){
 }
 
 // BUSCA
-document.getElementById('buscaEmpresa').oninput = e => {
-  const termo = e.target.value.toLowerCase();
+buscaEmpresa.oninput = e=>{
+  let t=e.target.value.toLowerCase();
   document.querySelectorAll('.empresa').forEach(emp=>{
-    emp.style.display = emp.innerText.toLowerCase().includes(termo) ? 'block' : 'none';
+    emp.style.display = emp.innerText.toLowerCase().includes(t)?'block':'none';
   });
-  if(!termo) limparHome();
+  if(!t)limparHome();
 };
 
-// SLIDER PARCEIROS
-let slideIndex = 0;
-function sliderParceiros(){
-  const slides = document.querySelectorAll('.slide');
-  slides.forEach(s=>s.style.display='none');
-  if(slides.length){
-    slideIndex = (slideIndex + 1) % slides.length;
-    slides[slideIndex].style.display = 'block';
+// SLIDER
+let i=0;
+setInterval(()=>{
+  let s=document.querySelectorAll('.slide');
+  s.forEach(e=>e.style.display='none');
+  if(s.length){
+    i=(i+1)%s.length;
+    s[i].style.display='block';
   }
-}
-setInterval(sliderParceiros, 4000);
+},4000);
 
 // INIT
-document.addEventListener('DOMContentLoaded',()=>{
-  limparHome();
-  sliderParceiros();
-});
+document.addEventListener('DOMContentLoaded',limparHome);
 
-// BOTÃO INSTALAR APP
+// INSTALL APP
 let deferredPrompt;
-const installBtn = document.getElementById('installBtn');
-
-window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault();
-  deferredPrompt = e;
-  installBtn.style.display = 'block';
-
-  installBtn.onclick = () => {
+installBtn.onclick=()=>{
+  if(deferredPrompt){
     deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(() => {
-      installBtn.style.display = 'none';
-    });
-  };
+    deferredPrompt=null;
+  }else{
+    alert(
+      'Para instalar:\n' +
+      '1 Abra no Chrome\n' +
+      '2 Menu ⋮\n' +
+      '3 Adicionar à tela inicial'
+    );
+  }
+};
+window.addEventListener('beforeinstallprompt',e=>{
+  e.preventDefault();
+  deferredPrompt=e;
 });
 </script>
 
