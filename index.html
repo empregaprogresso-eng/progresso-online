@@ -179,12 +179,12 @@ a{text-decoration:none;color:inherit}
 
 <!-- CATEGORIAS -->
 <div class="categories">
-  <div class="cat" onclick="mostrar('alimentacao')">🍔 Alimentação</div>
-  <div class="cat" onclick="mostrar('saude')">🏥 Saúde</div>
-  <div class="cat" onclick="mostrar('comercio')">🛒 Comércio</div>
-  <div class="cat" onclick="mostrar('servicos')">💻 Serviços</div>
-  <div class="cat" onclick="mostrar('automotivo')">🚗 Automotivo</div>
-  <div class="cat" onclick="mostrar('educacao')">🏫 Educação</div>
+  <div class="cat" onclick="abrirCategoria('alimentacao')">🍔 Alimentação</div>
+  <div class="cat" onclick="abrirCategoria('saude')">🏥 Saúde</div>
+  <div class="cat" onclick="abrirCategoria('comercio')">🛒 Comércio</div>
+  <div class="cat" onclick="abrirCategoria('servicos')">💻 Serviços</div>
+  <div class="cat" onclick="abrirCategoria('automotivo')">🚗 Automotivo</div>
+  <div class="cat" onclick="abrirCategoria('educacao')">🏫 Educação</div>
 </div>
 
 <!-- BLS -->
@@ -247,42 +247,75 @@ a{text-decoration:none;color:inherit}
 </footer>
 
 <script>
+// ===============================
 // LIMPAR HOME
+// ===============================
 function limparHome(){
   document.querySelectorAll('.empresa').forEach(e=>e.style.display='none');
 }
 
-// FILTRO
-function mostrar(cat){
-  document.querySelectorAll('.empresa').forEach(e=>{
-    e.style.display = e.classList.contains(cat) ? 'block' : 'none';
-  });
+// ===============================
+// ABRIR CATEGORIA (URL)
+// ===============================
+function abrirCategoria(cat){
+  window.location.href = `index.html?categoria=${cat}`;
 }
 
+// ===============================
+// LER CATEGORIA DA URL
+// ===============================
+function getCategoriaURL(){
+  const params = new URLSearchParams(window.location.search);
+  return params.get('categoria');
+}
+
+// ===============================
 // BUSCA
+// ===============================
 buscaEmpresa.oninput = e=>{
   const termo = e.target.value.toLowerCase();
   document.querySelectorAll('.empresa').forEach(emp=>{
-    emp.style.display = emp.innerText.toLowerCase().includes(termo)?'block':'none';
+    emp.style.display = emp.innerText.toLowerCase().includes(termo)
+      ? 'block'
+      : 'none';
   });
   if(!termo) limparHome();
 };
 
-// SLIDER
-let slideIndex=0;
-setInterval(()=>{
-  const slides=document.querySelectorAll('.slide');
+// ===============================
+// SLIDER PARCEIROS
+// ===============================
+let slideIndex = 0;
+window.sliderInterval = setInterval(()=>{
+  const slides = document.querySelectorAll('.slide');
   slides.forEach(s=>s.style.display='none');
   if(slides.length){
-    slideIndex=(slideIndex+1)%slides.length;
-    slides[slideIndex].style.display='block';
+    slideIndex = (slideIndex + 1) % slides.length;
+    slides[slideIndex].style.display = 'block';
   }
 },4000);
 
+// ===============================
 // INIT
-document.addEventListener('DOMContentLoaded',limparHome);
+// ===============================
+document.addEventListener('DOMContentLoaded',()=>{
+  const categoria = getCategoriaURL();
 
+  if(categoria){
+    document.querySelectorAll('.empresa').forEach(emp=>{
+      emp.style.display = emp.classList.contains(categoria)
+        ? 'block'
+        : 'none';
+    });
+    clearInterval(window.sliderInterval);
+  }else{
+    limparHome();
+  }
+});
+
+// ===============================
 // INSTALL APP
+// ===============================
 let deferredPrompt;
 installBtn.onclick=()=>{
   if(deferredPrompt){
@@ -302,7 +335,9 @@ window.addEventListener('beforeinstallprompt',e=>{
   deferredPrompt=e;
 });
 
+// ===============================
 // CONTADOR DE ACESSOS
+// ===============================
 fetch('https://api.countapi.xyz/hit/progresso-online/visitas')
   .then(res=>res.json())
   .then(data=>{
