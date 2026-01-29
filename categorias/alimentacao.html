@@ -108,6 +108,19 @@ a{text-decoration:none;color:inherit}
   <a class="btn" href="../index.html">⬅ Voltar ao início</a>
 
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const container = document.querySelector('.lista-empresas');
+  if(!container) return;
 
+  const cards = Array.from(container.children);
+
+  cards.sort((a,b)=>{
+    return (b.dataset.premium === 'true') - (a.dataset.premium === 'true');
+  });
+
+  cards.forEach(card => container.appendChild(card));
+});
+</script>
 </body>
 </html>
