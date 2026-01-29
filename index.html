@@ -9,9 +9,15 @@
 
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:'Segoe UI',Arial,sans-serif;background:#f2f4f7;color:#333}
 
-/* HEADER */
+body{
+  margin:0;
+  font-family:'Segoe UI',Arial,sans-serif;
+  background:#f2f4f7;
+  color:#333;
+}
+
+/* ===== HEADER ===== */
 header{
   background:linear-gradient(135deg,#0b5ed7,#2fb344);
   padding:50px 20px;
@@ -20,80 +26,133 @@ header{
   border-bottom-left-radius:28px;
   border-bottom-right-radius:28px;
 }
-header img{max-height:170px;animation:pulse 2.5s infinite}
-@keyframes pulse{50%{transform:scale(1.05)}}
-header h1{margin:10px 0 5px;font-size:28px}
-header p{font-size:15px;opacity:.95}
 
-/* CONTAINER */
-.container{padding:20px;max-width:1000px;margin:-35px auto 0}
+header img{
+  max-height:170px;
+  animation:pulse 2.5s infinite;
+}
+
+@keyframes pulse{
+  50%{transform:scale(1.05)}
+}
+
+header h1{
+  margin:10px 0 5px;
+  font-size:28px;
+}
+
+header p{
+  font-size:15px;
+  opacity:.95;
+}
+
+/* ===== CONTAINER ===== */
+.container{
+  padding:20px;
+  max-width:1000px;
+  margin:-35px auto 0;
+}
 
 /* BUSCA */
 .search input{
-  width:100%;padding:16px;border-radius:14px;border:none;
-  font-size:15px;box-shadow:0 6px 18px rgba(0,0,0,.08);
+  width:100%;
+  padding:16px;
+  border-radius:14px;
+  border:none;
+  outline:none;
+  font-size:15px;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
   margin-bottom:20px;
 }
 
 /* CATEGORIAS */
 .categories{
-  display:grid;grid-template-columns:repeat(2,1fr);
-  gap:14px;margin-bottom:25px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+  margin-bottom:25px;
 }
+
 .cat{
-  background:#fff;padding:18px;border-radius:16px;
-  text-align:center;font-weight:600;
+  background:#fff;
+  padding:18px;
+  border-radius:16px;
+  text-align:center;
+  font-weight:600;
+  cursor:pointer;
   box-shadow:0 6px 18px rgba(0,0,0,.08);
   transition:.2s;
 }
-.cat:hover{transform:translateY(-3px)}
-a.cat{text-decoration:none;color:inherit}
 
-/* TITULO CATEGORIA */
-#tituloCategoria{
-  display:none;
-  background:#fff;
-  padding:16px;
-  border-radius:16px;
-  text-align:center;
-  font-weight:700;
-  margin-bottom:15px;
-  box-shadow:0 6px 18px rgba(0,0,0,.08);
+.cat:hover{
+  transform:translateY(-3px);
 }
 
-/* CARD */
+/* CARDS */
 .card{
-  background:#fff;padding:18px;border-radius:18px;
-  margin-top:18px;box-shadow:0 6px 18px rgba(0,0,0,.08);
+  background:#fff;
+  padding:18px;
+  border-radius:18px;
+  margin-top:18px;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
   position:relative;
 }
-.empresa-topo{display:flex;align-items:center;gap:14px}
-.logo-empresa{
-  width:72px;height:72px;object-fit:contain;
-  background:#f4f6f8;padding:8px;border-radius:16px;
+
+.empresa-topo{
+  display:flex;
+  align-items:center;
+  gap:14px;
 }
+
+.logo-empresa{
+  width:72px;
+  height:72px;
+  object-fit:contain;
+  background:#f4f6f8;
+  padding:8px;
+  border-radius:16px;
+}
+
 .selo{
-  position:absolute;top:12px;right:12px;
+  position:absolute;
+  top:12px;
+  right:12px;
   background:linear-gradient(45deg,#0b5ed7,#2fb344);
-  color:#fff;padding:6px 14px;border-radius:20px;
-  font-size:12px;animation:pulse 1.5s infinite;
+  color:#fff;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:12px;
+  animation:pulse 1.5s infinite;
 }
 
 /* BOTÕES */
 .btn{
-  display:block;margin-top:16px;padding:15px;
-  background:#25D366;color:#fff;text-align:center;
-  border-radius:14px;font-weight:600;
-  box-shadow:0 6px 16px rgba(0,0,0,.12);
+  display:block;
+  margin-top:16px;
+  padding:15px;
+  background:#25D366;
+  color:#fff;
+  text-align:center;
+  border-radius:14px;
   text-decoration:none;
+  font-weight:600;
+  box-shadow:0 6px 16px rgba(0,0,0,.12);
 }
-.btn.menu,.btn.install{background:#0b5ed7}
+
+.btn.menu{background:#0b5ed7}
+.btn.install{background:#0b5ed7}
+
+footer{
+  text-align:center;
+  padding:25px 15px;
+  color:#777;
+  font-size:14px;
+}
+
+a{text-decoration:none;color:inherit}
 
 /* SLIDER */
 .slide{display:none}
-
-/* FOOTER */
-footer{text-align:center;padding:25px 15px;color:#777;font-size:14px}
 </style>
 </head>
 
@@ -107,131 +166,84 @@ footer{text-align:center;padding:25px 15px;color:#777;font-size:14px}
 
 <div class="container">
 
+<!-- BUSCA -->
 <div class="search">
-  <input id="buscaEmpresa" placeholder="O que você procura em Novo Progresso?">
+  <input placeholder="Busque empresas dentro das categorias">
 </div>
 
+<!-- CATEGORIAS (ABREM NOVA PÁGINA) -->
 <div class="categories">
-  <a href="index.html?categoria=alimentacao" class="cat">🍔 Alimentação</a>
-  <a href="index.html?categoria=saude" class="cat">🏥 Saúde</a>
-  <a href="index.html?categoria=comercio" class="cat">🛒 Comércio</a>
-  <a href="index.html?categoria=servicos" class="cat">💻 Serviços</a>
-  <a href="index.html?categoria=automotivo" class="cat">🚗 Automotivo</a>
-  <a href="index.html?categoria=educacao" class="cat">🏫 Educação</a>
+  <a href="categorias/alimentacao.html"><div class="cat">🍔 Alimentação</div></a>
+  <a href="categorias/saude.html"><div class="cat">🏥 Saúde</div></a>
+  <a href="categorias/comercio.html"><div class="cat">🛒 Comércio</div></a>
+  <a href="categorias/servicos.html"><div class="cat">💻 Serviços</div></a>
+  <a href="categorias/automotivo.html"><div class="cat">🚗 Automotivo</div></a>
+  <a href="categorias/educacao.html"><div class="cat">🏫 Educação</div></a>
 </div>
 
-<div id="tituloCategoria"></div>
+<!-- EMPRESAS PARCEIRAS (DESTAQUE HOME) -->
 
-<!-- EMPRESAS -->
 <a href="empresas/bls.html">
-<div class="card empresa alimentacao slide destaque">
-  <span class="selo">PREMIUM</span>
-  <div class="empresa-topo">
-    <img src="logos/bls.png" class="logo-empresa">
-    <strong>BLS REPRESENTAÇÕES</strong>
+  <div class="card slide">
+    <span class="selo">PARCEIRA</span>
+    <div class="empresa-topo">
+      <img src="logos/bls.png" class="logo-empresa">
+      <strong>BLS REPRESENTAÇÕES</strong>
+    </div>
+    <p>Conservas, temperos e condimentos.</p>
   </div>
-  <p>Conservas, temperos e condimentos.</p>
-</div>
 </a>
 
 <a href="empresas/online.html">
-<div class="card empresa servicos slide destaque">
-  <span class="selo">PREMIUM</span>
-  <div class="empresa-topo">
-    <img src="logos/online.png" class="logo-empresa">
-    <strong>Online - Infraestrutura e Tecnologia</strong>
+  <div class="card slide">
+    <span class="selo">PARCEIRA</span>
+    <div class="empresa-topo">
+      <img src="logos/online.png" class="logo-empresa">
+      <strong>Online - Infraestrutura e Tecnologia</strong>
+    </div>
+    <p>Soluções em informática.</p>
   </div>
-  <p>Soluções em informática.</p>
-</div>
 </a>
 
-<div class="card empresa automotivo slide">
-  <span class="selo">PARCEIRA</span>
-  <div class="empresa-topo">
-    <img src="logos/drive.png" class="logo-empresa">
-    <strong>Brasil Drive</strong>
-  </div>
-  <p>Mobilidade Urbana</p>
-  <a class="btn" href="https://wa.me/5593984196713">📞 WhatsApp</a>
-</div>
-
-<a href="index.html" id="btnVoltar" class="btn menu" style="display:none">
-⬅ Voltar ao início
+<!-- MENU -->
+<a class="btn" href="https://wa.me/5593984032129">
+  📢 Anuncie sua empresa
 </a>
 
-<a class="btn" href="https://wa.me/5593984032129">📢 Anuncie sua empresa</a>
-<a class="btn menu" href="vagas/index.html">💼 Vagas de Emprego</a>
-<a class="btn install" id="installBtn">📲 Instalar App</a>
+<a class="btn menu" href="vagas/index.html">
+  💼 Vagas de Emprego
+</a>
+
+<a class="btn install" id="installBtn">
+  📲 Instalar App Progresso Online
+</a>
 
 </div>
 
 <footer>
-👀 Acessos: <strong id="totalAcessos">...</strong><br>
-© 2026 - Progresso Online • <strong>Cleoson Harthopff</strong>
+  <div style="margin-bottom:6px;">
+    👀 Acessos ao guia: <strong id="totalAcessos">...</strong>
+  </div>
+  © 2026 - Progresso Online • <strong>Cleoson Harthopff</strong>
 </footer>
 
 <script>
-// ===== URL CATEGORIA =====
-function getCategoria(){
-  return new URLSearchParams(window.location.search).get('categoria');
-}
-
-// ===== BUSCA =====
-buscaEmpresa.oninput=e=>{
-  let t=e.target.value.toLowerCase();
-  document.querySelectorAll('.empresa').forEach(emp=>{
-    emp.style.display=emp.innerText.toLowerCase().includes(t)?'block':'none';
-  });
-  if(!t) location.href='index.html';
-};
-
-// ===== SLIDER =====
-let i=0;
-let slider=setInterval(()=>{
-  let s=document.querySelectorAll('.slide');
-  s.forEach(e=>e.style.display='none');
-  if(s.length){i=(i+1)%s.length;s[i].style.display='block'}
+// SLIDER HOME (APENAS DESTAQUES)
+let slideIndex=0;
+setInterval(()=>{
+  const slides=document.querySelectorAll('.slide');
+  slides.forEach(s=>s.style.display='none');
+  if(slides.length){
+    slideIndex=(slideIndex+1)%slides.length;
+    slides[slideIndex].style.display='block';
+  }
 },4000);
 
-// ===== INIT =====
-document.addEventListener('DOMContentLoaded',()=>{
-  const cat=getCategoria();
-  if(cat){
-    document.getElementById('btnVoltar').style.display='block';
-    document.getElementById('tituloCategoria').style.display='block';
-    document.getElementById('tituloCategoria').innerText='Categoria: '+cat.toUpperCase();
-
-    document.querySelectorAll('.empresa').forEach(emp=>{
-      emp.style.display=emp.classList.contains(cat)?'block':'none';
-    });
-
-    clearInterval(slider);
-
-    // PREMIUM NO TOPO
-    document.querySelectorAll('.empresa.destaque').forEach(d=>{
-      if(d.classList.contains(cat)){
-        d.parentElement.prepend(d);
-      }
-    });
-  }else{
-    document.querySelectorAll('.empresa').forEach(e=>e.style.display='none');
-  }
-});
-
-// ===== INSTALL APP =====
-let deferredPrompt;
-installBtn.onclick=()=>{
-  deferredPrompt?deferredPrompt.prompt():alert('Menu ⋮ > Adicionar à tela inicial');
-};
-window.addEventListener('beforeinstallprompt',e=>{
-  e.preventDefault();deferredPrompt=e;
-});
-
-// ===== CONTADOR =====
+// CONTADOR
 fetch('https://api.countapi.xyz/hit/progresso-online/visitas')
-.then(r=>r.json()).then(d=>{
-  totalAcessos.innerText=d.value;
-});
+.then(r=>r.json())
+.then(d=>document.getElementById('totalAcessos').innerText=d.value)
+.catch(()=>document.getElementById('totalAcessos').innerText='—');
 </script>
 
 </body>
