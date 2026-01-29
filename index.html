@@ -12,9 +12,9 @@
 *{box-sizing:border-box}
 body{
   margin:0;
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family:'Segoe UI',Arial,sans-serif;
   background:#f2f4f7;
-  color:#333;
+  color:#333
 }
 
 /* HEADER */
@@ -28,25 +28,15 @@ header{
 }
 header img{
   max-width:160px;
-  animation:pulse 2.5s infinite;
+  animation:pulse 2.5s infinite
 }
-@keyframes pulse{
-  50%{transform:scale(1.05)}
-}
-header h1{
-  margin:10px 0 5px;
-  font-size:26px;
-}
-header p{
-  opacity:.9;
-  font-size:15px;
-}
+@keyframes pulse{50%{transform:scale(1.05)}}
 
 /* CONTAINER */
 .container{
   padding:20px;
-  max-width:900px;
-  margin:-40px auto 0;
+  max-width:1000px;
+  margin:-40px auto 0
 }
 
 /* BUSCA */
@@ -55,18 +45,20 @@ header p{
   padding:16px;
   border-radius:14px;
   border:none;
-  outline:none;
   font-size:15px;
   box-shadow:0 6px 16px rgba(0,0,0,.08);
-  margin-bottom:25px;
+  margin-bottom:25px
 }
 
 /* CATEGORIAS */
 .categories{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:repeat(3,1fr);
   gap:14px;
-  margin-bottom:25px;
+  margin-bottom:25px
+}
+@media(max-width:600px){
+  .categories{grid-template-columns:repeat(2,1fr)}
 }
 .cat{
   background:#fff;
@@ -76,34 +68,31 @@ header p{
   font-weight:600;
   cursor:pointer;
   box-shadow:0 6px 18px rgba(0,0,0,.08);
-  transition:.2s;
+  transition:.2s
 }
-.cat:hover{
-  transform:translateY(-3px);
-}
+.cat:hover{transform:translateY(-3px)}
 
-/* LISTA */
-.section-title{
-  font-size:18px;
-  font-weight:700;
-  margin-bottom:10px;
+/* SLIDER */
+.slider{
+  position:relative;
+  margin-bottom:25px
 }
+.slide{
+  display:none
+}
+.slide.ativo{display:block}
 
 /* CARD EMPRESA */
 .card{
   background:#fff;
   padding:16px;
   border-radius:18px;
-  margin-bottom:16px;
   box-shadow:0 6px 18px rgba(0,0,0,.08);
-  display:none;
 }
-.card.ativo{display:block}
-
 .empresa-topo{
   display:flex;
   align-items:center;
-  gap:14px;
+  gap:14px
 }
 .logo-empresa{
   width:56px;
@@ -111,10 +100,7 @@ header p{
   border-radius:14px;
   object-fit:contain;
   background:#f4f6f8;
-  padding:6px;
-}
-.empresa-topo strong{
-  font-size:16px;
+  padding:6px
 }
 .selo{
   margin-left:auto;
@@ -122,30 +108,36 @@ header p{
   color:#fff;
   padding:6px 12px;
   border-radius:20px;
-  font-size:12px;
+  font-size:12px
 }
+
+/* LISTA NORMAL */
+.lista .card{
+  margin-bottom:16px;
+  display:none
+}
+.lista .card.ativo{display:block}
 
 /* BOTÕES */
 .btn{
   display:block;
-  margin-top:14px;
+  margin-top:16px;
   padding:15px;
   background:#25D366;
   color:#fff;
   text-align:center;
   border-radius:14px;
   text-decoration:none;
-  font-weight:600;
+  font-weight:600
 }
 .btn.menu{background:#0b5ed7}
 .btn.install{background:#0b5ed7}
 
-/* FOOTER */
 footer{
   text-align:center;
   padding:25px;
   font-size:14px;
-  color:#777;
+  color:#777
 }
 a{text-decoration:none;color:inherit}
 </style>
@@ -156,24 +148,31 @@ a{text-decoration:none;color:inherit}
 <header>
   <img src="logo.png">
   <h1>Progresso Online</h1>
-  <p>Guia digital de empresas de Novo Progresso</p>
+  <p>Guia digital de empresas de Novo Progresso e região</p>
 </header>
 
 <div class="container">
 
+<!-- BUSCA -->
 <div class="search">
   <input id="buscaEmpresa" placeholder="Buscar empresas, serviços ou produtos…">
 </div>
 
+<!-- CATEGORIAS -->
 <div class="categories">
-  <div class="cat" onclick="mostrar('alimentacao')">🍔 Alimentação</div>
-  <div class="cat" onclick="mostrar('servicos')">💻 Serviços</div>
+  <div class="cat" onclick="filtrar('alimentacao')">🍔 Alimentação</div>
+  <div class="cat" onclick="filtrar('saude')">🏥 Saúde</div>
+  <div class="cat" onclick="filtrar('comercio')">🛒 Comércio</div>
+  <div class="cat" onclick="filtrar('servicos')">💻 Serviços</div>
+  <div class="cat" onclick="filtrar('automotivo')">🚗 Automotivo</div>
+  <div class="cat" onclick="filtrar('educacao')">🏫 Educação</div>
 </div>
 
-<div class="section-title">Empresas Parceiras</div>
+<!-- SLIDER PARCEIROS -->
+<div class="slider">
 
 <a href="empresas/bls.html">
-<div class="card empresa alimentacao ativo">
+<div class="slide ativo card empresa alimentacao">
   <div class="empresa-topo">
     <img src="logos/bls.png" class="logo-empresa">
     <strong>BLS Representações</strong>
@@ -183,17 +182,42 @@ a{text-decoration:none;color:inherit}
 </a>
 
 <a href="empresas/online.html">
-<div class="card empresa servicos ativo">
+<div class="slide card empresa servicos">
   <div class="empresa-topo">
     <img src="logos/online.png" class="logo-empresa">
-    <strong>Online Infraestrutura & Tecnologia</strong>
+    <strong>Online – Infraestrutura e Tecnologia</strong>
     <span class="selo">Parceira</span>
   </div>
 </div>
 </a>
 
+</div>
+
+<!-- LISTA GERAL -->
+<div class="lista">
+
+<a href="empresas/bls.html">
+<div class="card empresa alimentacao ativo">
+  <div class="empresa-topo">
+    <img src="logos/bls.png" class="logo-empresa">
+    <strong>BLS Representações</strong>
+  </div>
+</div>
+</a>
+
+<a href="empresas/online.html">
+<div class="card empresa servicos ativo">
+  <div class="empresa-topo">
+    <img src="logos/online.png" class="logo-empresa">
+    <strong>Online – Infraestrutura e Tecnologia</strong>
+  </div>
+</div>
+</a>
+
+</div>
+
 <a class="btn" href="https://wa.me/5593984032129">📢 Anuncie sua empresa</a>
-<a class="btn menu" href="#">💼 Vagas de Emprego</a>
+<a class="btn menu" href="vagas/index.html">💼 Vagas de Emprego</a>
 <a class="btn install" id="installBtn" style="display:none;">📲 Instalar App</a>
 
 </div>
@@ -201,23 +225,33 @@ a{text-decoration:none;color:inherit}
 <footer>© 2026 • Progresso Online</footer>
 
 <script>
-function mostrar(cat){
-  document.querySelectorAll('.empresa').forEach(e=>{
-    e.classList.toggle('ativo', e.classList.contains(cat));
+/* SLIDER */
+let sIndex=0;
+setInterval(()=>{
+  const slides=document.querySelectorAll('.slide');
+  slides.forEach(s=>s.classList.remove('ativo'));
+  sIndex=(sIndex+1)%slides.length;
+  slides[sIndex].classList.add('ativo');
+},4000);
+
+/* FILTRO */
+function filtrar(cat){
+  document.querySelectorAll('.lista .empresa').forEach(e=>{
+    e.classList.toggle('ativo',e.classList.contains(cat));
   });
 }
 
-document.getElementById('buscaEmpresa').oninput = e=>{
+/* BUSCA */
+document.getElementById('buscaEmpresa').oninput=e=>{
   const t=e.target.value.toLowerCase();
-  document.querySelectorAll('.empresa').forEach(emp=>{
-    emp.classList.toggle('ativo', emp.innerText.toLowerCase().includes(t));
+  document.querySelectorAll('.lista .empresa').forEach(emp=>{
+    emp.classList.toggle('ativo',emp.innerText.toLowerCase().includes(t));
   });
 };
 
 /* PWA */
 let deferredPrompt;
 const installBtn=document.getElementById('installBtn');
-
 window.addEventListener('beforeinstallprompt',e=>{
   e.preventDefault();
   deferredPrompt=e;
@@ -227,7 +261,6 @@ window.addEventListener('beforeinstallprompt',e=>{
     deferredPrompt.userChoice.then(()=>installBtn.style.display='none');
   };
 });
-
 if('serviceWorker'in navigator){
   navigator.serviceWorker.register('service-worker.js');
 }
