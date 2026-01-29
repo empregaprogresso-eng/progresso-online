@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Transporte - Progresso Online</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{margin:0;font-family:Segoe UI,Arial;background:#f2f4f7;color:#333}
+header{background:linear-gradient(135deg,#0b5ed7,#2fb344);padding:40px 20px;text-align:center;color:#fff}
+.container{padding:20px;max-width:900px;margin:auto}
+
+.card{
+  background:#fff;
+  padding:18px;
+  border-radius:16px;
+  margin-top:16px;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  position:relative;
+}
+
+.empresa-topo{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.logo-empresa{
+  width:70px;
+  height:70px;
+  object-fit:contain;
+  background:#f4f6f8;
+  padding:8px;
+  border-radius:14px;
+}
+
+.selo{
+  position:absolute;
+  top:12px;
+  right:12px;
+  background:linear-gradient(45deg,#FFD700,#FF9800);
+  color:#000;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:700;
+}
+
+.btn{
+  display:block;
+  margin-top:20px;
+  padding:14px;
+  background:#0b5ed7;
+  color:#fff;
+  text-align:center;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:600;
+}
+
+a{text-decoration:none;color:inherit}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🚕 Transporte</h1>
+  <p>Empresas de mobilidade e transporte</p>
+</header>
+
+<div class="container">
+
+  <p><strong>Total de empresas:</strong> <span id="contadorEmpresas">0</span></p>
+
+  <div class="lista-empresas">
+
+    <a href="../empresas/brasil-drive.html">
+      <div class="card empresa" data-premium="true">
+        <span class="selo">PRÊMIO</span>
+
+        <div class="empresa-topo">
+          <img src="../logos/drive.png" class="logo-empresa">
+          <strong>Brasil Drive</strong>
+        </div>
+
+        <p>Mobilidade urbana e transporte por aplicativo.</p>
+      </div>
+    </a>
+
+  </div>
+
+  <a class="btn" href="../index.html">⬅ Voltar ao início</a>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const lista = document.querySelector('.lista-empresas');
+  const cards = Array.from(lista.querySelectorAll('.empresa'));
+
+  cards.sort((a,b)=>{
+    return (b.dataset.premium === 'true') - (a.dataset.premium === 'true');
+  });
+  cards.forEach(c => lista.appendChild(c));
+
+  document.getElementById('contadorEmpresas').innerText = cards.length;
+});
+</script>
+
+</body>
+</html>
