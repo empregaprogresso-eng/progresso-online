@@ -2,14 +2,31 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Transporte - Progresso Online</title>
+<title>Alimentação - Progresso Online</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{margin:0;font-family:Segoe UI,Arial;background:#f2f4f7;color:#333}
-header{background:linear-gradient(135deg,#0b5ed7,#2fb344);padding:40px 20px;text-align:center;color:#fff}
-.container{padding:20px;max-width:900px;margin:auto}
+body{
+  margin:0;
+  font-family:'Segoe UI',Arial;
+  background:#f2f4f7;
+  color:#333;
+}
 
+header{
+  background:linear-gradient(135deg,#0b5ed7,#2fb344);
+  padding:40px 20px;
+  text-align:center;
+  color:#fff;
+}
+
+.container{
+  padding:20px;
+  max-width:900px;
+  margin:auto;
+}
+
+/* CARD EMPRESA */
 .card{
   background:#fff;
   padding:18px;
@@ -17,8 +34,15 @@ header{background:linear-gradient(135deg,#0b5ed7,#2fb344);padding:40px 20px;text
   margin-top:16px;
   box-shadow:0 6px 18px rgba(0,0,0,.08);
   position:relative;
+  cursor:pointer;
+  transition:.2s;
 }
 
+.card:hover{
+  transform:translateY(-3px);
+}
+
+/* TOPO EMPRESA */
 .empresa-topo{
   display:flex;
   align-items:center;
@@ -34,6 +58,7 @@ header{background:linear-gradient(135deg,#0b5ed7,#2fb344);padding:40px 20px;text
   border-radius:14px;
 }
 
+/* SELO PRÊMIO */
 .selo{
   position:absolute;
   top:12px;
@@ -46,9 +71,10 @@ header{background:linear-gradient(135deg,#0b5ed7,#2fb344);padding:40px 20px;text
   font-weight:700;
 }
 
+/* BOTÃO */
 .btn{
   display:block;
-  margin-top:20px;
+  margin-top:24px;
   padding:14px;
   background:#0b5ed7;
   color:#fff;
@@ -57,57 +83,40 @@ header{background:linear-gradient(135deg,#0b5ed7,#2fb344);padding:40px 20px;text
   text-decoration:none;
   font-weight:600;
 }
-
-a{text-decoration:none;color:inherit}
 </style>
 </head>
 
 <body>
 
 <header>
-  <h1>🚕 Transporte</h1>
-  <p>Empresas de mobilidade e transporte</p>
+  <h1>🍔 Alimentação</h1>
+  <p>Empresas cadastradas nesta categoria</p>
 </header>
 
 <div class="container">
 
-  <p><strong>Total de empresas:</strong> <span id="contadorEmpresas">0</span></p>
+  <!-- BRASIL DRIVE (PRÊMIO) -->
+  <div class="card"
+       onclick="abrirEmpresa('../empresas/brasil-drive.html')">
 
-  <div class="lista-empresas">
+    <span class="selo">PRÊMIO</span>
 
-  <a href="/empresas/brasil-drive.html">
-    <div class="card empresa"
-     data-premium="true"
-     onclick="abrirEmpresa('../empresas/brasil-drive.html')"
-     style="cursor:pointer">
+    <div class="empresa-topo">
+      <img src="../logos/drive.png" class="logo-empresa" alt="Brasil Drive">
+      <strong>Brasil Drive</strong>
+    </div>
 
-  <span class="selo">PRÊMIO</span>
-
-  <div class="empresa-topo">
-    <img src="../logos/drive.png" class="logo-empresa">
-    <strong>Brasil Drive</strong>
+    <p>Mobilidade urbana e transporte por aplicativo.</p>
   </div>
-
-  <p>Mobilidade urbana e transporte por aplicativo.</p>
-
-</div>
 
   <a class="btn" href="../index.html">⬅ Voltar ao início</a>
 
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const lista = document.querySelector('.lista-empresas');
-  const cards = Array.from(lista.querySelectorAll('.empresa'));
-
-  cards.sort((a,b)=>{
-    return (b.dataset.premium === 'true') - (a.dataset.premium === 'true');
-  });
-  cards.forEach(c => lista.appendChild(c));
-
-  document.getElementById('contadorEmpresas').innerText = cards.length;
-});
+function abrirEmpresa(url){
+  window.location.href = url;
+}
 </script>
 
 </body>
