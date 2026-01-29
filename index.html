@@ -240,7 +240,10 @@ a{text-decoration:none;color:inherit}
 </div>
 
 <footer>
-© 2026 - Progresso Online • <strong>Cleoson Harthopff</strong>
+  <div style="margin-bottom:6px;">
+    👀 Acessos ao guia: <strong id="totalAcessos">...</strong>
+  </div>
+  © 2026 - Progresso Online • <strong>Cleoson Harthopff</strong>
 </footer>
 
 <script>
@@ -298,6 +301,16 @@ window.addEventListener('beforeinstallprompt',e=>{
   e.preventDefault();
   deferredPrompt=e;
 });
+
+// CONTADOR DE ACESSOS
+fetch('https://api.countapi.xyz/hit/progresso-online/visitas')
+  .then(res=>res.json())
+  .then(data=>{
+    document.getElementById('totalAcessos').innerText=data.value;
+  })
+  .catch(()=>{
+    document.getElementById('totalAcessos').innerText='—';
+  });
 </script>
 
 </body>
