@@ -17,13 +17,13 @@ body{
 /* ===== HEADER ===== */
 header{
   background:linear-gradient(90deg,#0b5ed7,#2fb344);
-  padding:45px 20px; /* mais espaço para logo grande */
+  padding:45px 20px;
   text-align:center;
   color:#fff;
 }
 
 header img{
-  max-height:170px; /* LOGO AJUSTADA */
+  max-height:170px;
   width:auto;
   animation:pulse 2.5s infinite;
 }
@@ -32,13 +32,13 @@ header img{
   50%{transform:scale(1.06)}
 }
 
-/* ===== RESPONSIVO ===== */
-@media (max-width: 768px){
+/* RESPONSIVO */
+@media (max-width:768px){
   header{
     padding:35px 15px;
   }
   header img{
-    max-height:150px; /* mobile equilibrado */
+    max-height:150px;
   }
 }
 
@@ -160,7 +160,7 @@ a{text-decoration:none;color:inherit}
   <div class="cat" onclick="mostrar('educacao')">🏫 Educação</div>
 </div>
 
-<!-- EMPRESAS -->
+<!-- BLS -->
 <a href="empresas/bls.html">
   <div class="card empresa alimentacao slide">
     <span class="selo">PARCEIRA</span>
@@ -172,6 +172,7 @@ a{text-decoration:none;color:inherit}
   </div>
 </a>
 
+<!-- ONLINE -->
 <a href="empresas/online.html">
   <div class="card empresa servicos slide">
     <span class="selo">PARCEIRA</span>
@@ -182,6 +183,19 @@ a{text-decoration:none;color:inherit}
     <p>Soluções em informática.</p>
   </div>
 </a>
+
+<!-- BRASIL DRIVE (NOVO) -->
+<div class="card empresa automotivo slide">
+  <span class="selo">PARCEIRA</span>
+  <div class="empresa-topo">
+    <img src="logos/drive.png" class="logo-empresa" alt="Brasil Drive">
+    <strong>Brasil Drive</strong>
+  </div>
+  <p>Mobilidade Urbana</p>
+  <a class="btn" href="https://wa.me/5593984196713" target="_blank">
+    📞 Falar no WhatsApp
+  </a>
+</div>
 
 <!-- MENU -->
 <a class="btn" href="https://wa.me/5593984032129">
