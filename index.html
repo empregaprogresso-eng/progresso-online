@@ -4,274 +4,233 @@
 <meta charset="UTF-8">
 <title>Progresso Online</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0b5ed7">
 
 <style>
+*{box-sizing:border-box}
 body{
   margin:0;
-  font-family:Arial;
-  background:#f4f6f8;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background:#f2f4f7;
+  color:#333;
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 header{
-  background:linear-gradient(90deg,#0b5ed7,#2fb344);
-  padding:45px 20px;
+  background:linear-gradient(135deg,#0b5ed7,#2fb344);
+  padding:45px 20px 60px;
   text-align:center;
   color:#fff;
+  border-bottom-left-radius:30px;
+  border-bottom-right-radius:30px;
 }
-
 header img{
-  max-height:170px;
-  width:auto;
+  max-width:160px;
   animation:pulse 2.5s infinite;
 }
-
 @keyframes pulse{
-  50%{transform:scale(1.06)}
+  50%{transform:scale(1.05)}
+}
+header h1{
+  margin:10px 0 5px;
+  font-size:26px;
+}
+header p{
+  opacity:.9;
+  font-size:15px;
 }
 
-/* RESPONSIVO */
-@media (max-width:768px){
-  header{
-    padding:35px 15px;
-  }
-  header img{
-    max-height:150px;
-  }
+/* CONTAINER */
+.container{
+  padding:20px;
+  max-width:900px;
+  margin:-40px auto 0;
 }
-
-/* ===== CONTAINER ===== */
-.container{padding:15px}
 
 /* BUSCA */
 .search input{
   width:100%;
-  padding:14px;
-  border-radius:10px;
-  border:1px solid #ccc;
-  margin-bottom:15px;
+  padding:16px;
+  border-radius:14px;
+  border:none;
+  outline:none;
+  font-size:15px;
+  box-shadow:0 6px 16px rgba(0,0,0,.08);
+  margin-bottom:25px;
 }
 
 /* CATEGORIAS */
 .categories{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:12px;
-  margin-bottom:20px;
+  gap:14px;
+  margin-bottom:25px;
 }
-
 .cat{
   background:#fff;
-  padding:20px;
-  border-radius:14px;
+  padding:18px;
+  border-radius:16px;
   text-align:center;
-  font-weight:bold;
+  font-weight:600;
   cursor:pointer;
-  box-shadow:0 3px 8px rgba(0,0,0,.1);
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  transition:.2s;
+}
+.cat:hover{
+  transform:translateY(-3px);
 }
 
-/* CARDS */
+/* LISTA */
+.section-title{
+  font-size:18px;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+/* CARD EMPRESA */
 .card{
   background:#fff;
-  padding:15px;
-  border-radius:14px;
-  margin-top:15px;
-  box-shadow:0 3px 8px rgba(0,0,0,.1);
-  position:relative;
+  padding:16px;
+  border-radius:18px;
+  margin-bottom:16px;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  display:none;
 }
+.card.ativo{display:block}
 
 .empresa-topo{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:14px;
 }
-
 .logo-empresa{
-  width:80px;
-  height:80px;
+  width:56px;
+  height:56px;
+  border-radius:14px;
   object-fit:contain;
+  background:#f4f6f8;
+  padding:6px;
 }
-
+.empresa-topo strong{
+  font-size:16px;
+}
 .selo{
-  position:absolute;
-  top:10px;
-  right:10px;
+  margin-left:auto;
   background:linear-gradient(45deg,#0b5ed7,#2fb344);
   color:#fff;
   padding:6px 12px;
   border-radius:20px;
   font-size:12px;
-  animation:pulse 1.5s infinite;
 }
 
 /* BOTÕES */
 .btn{
   display:block;
-  margin-top:15px;
-  padding:14px;
+  margin-top:14px;
+  padding:15px;
   background:#25D366;
   color:#fff;
   text-align:center;
-  border-radius:10px;
+  border-radius:14px;
   text-decoration:none;
-  font-weight:bold;
+  font-weight:600;
 }
-
 .btn.menu{background:#0b5ed7}
 .btn.install{background:#0b5ed7}
 
+/* FOOTER */
 footer{
   text-align:center;
-  padding:20px;
+  padding:25px;
+  font-size:14px;
   color:#777;
 }
-
 a{text-decoration:none;color:inherit}
-
-/* SLIDER */
-.slide{display:none}
 </style>
 </head>
 
 <body>
 
 <header>
-  <img src="logo.png" alt="Progresso Online">
+  <img src="logo.png">
   <h1>Progresso Online</h1>
-  <p>Guia digital de empresas de Novo Progresso e região</p>
+  <p>Guia digital de empresas de Novo Progresso</p>
 </header>
 
 <div class="container">
 
-<!-- BUSCA -->
 <div class="search">
-  <input id="buscaEmpresa" placeholder="O que você procura em Novo Progresso?">
+  <input id="buscaEmpresa" placeholder="Buscar empresas, serviços ou produtos…">
 </div>
 
-<!-- CATEGORIAS -->
 <div class="categories">
   <div class="cat" onclick="mostrar('alimentacao')">🍔 Alimentação</div>
-  <div class="cat" onclick="mostrar('saude')">🏥 Saúde</div>
-  <div class="cat" onclick="mostrar('comercio')">🛒 Comércio</div>
   <div class="cat" onclick="mostrar('servicos')">💻 Serviços</div>
-  <div class="cat" onclick="mostrar('automotivo')">🚗 Automotivo</div>
-  <div class="cat" onclick="mostrar('educacao')">🏫 Educação</div>
 </div>
 
-<!-- BLS -->
+<div class="section-title">Empresas Parceiras</div>
+
 <a href="empresas/bls.html">
-  <div class="card empresa alimentacao slide">
-    <span class="selo">PARCEIRA</span>
-    <div class="empresa-topo">
-      <img src="logos/bls.png" class="logo-empresa">
-      <strong>BLS REPRESENTAÇÕES</strong>
-    </div>
-    <p>Conservas, temperos e condimentos.</p>
-  </div>
-</a>
-
-<!-- ONLINE -->
-<a href="empresas/online.html">
-  <div class="card empresa servicos slide">
-    <span class="selo">PARCEIRA</span>
-    <div class="empresa-topo">
-      <img src="logos/online.png" class="logo-empresa">
-      <strong>Online - Infraestrutura e Tecnologia</strong>
-    </div>
-    <p>Soluções em informática.</p>
-  </div>
-</a>
-
-<!-- BRASIL DRIVE (NOVO) -->
-<div class="card empresa automotivo slide">
-  <span class="selo">PARCEIRA</span>
+<div class="card empresa alimentacao ativo">
   <div class="empresa-topo">
-    <img src="logos/drive.png" class="logo-empresa" alt="Brasil Drive">
-    <strong>Brasil Drive</strong>
+    <img src="logos/bls.png" class="logo-empresa">
+    <strong>BLS Representações</strong>
+    <span class="selo">Parceira</span>
   </div>
-  <p>Mobilidade Urbana</p>
-  <a class="btn" href="https://wa.me/5593984196713" target="_blank">
-    📞 Falar no WhatsApp
-  </a>
+</div>
+</a>
+
+<a href="empresas/online.html">
+<div class="card empresa servicos ativo">
+  <div class="empresa-topo">
+    <img src="logos/online.png" class="logo-empresa">
+    <strong>Online Infraestrutura & Tecnologia</strong>
+    <span class="selo">Parceira</span>
+  </div>
+</div>
+</a>
+
+<a class="btn" href="https://wa.me/5593984032129">📢 Anuncie sua empresa</a>
+<a class="btn menu" href="#">💼 Vagas de Emprego</a>
+<a class="btn install" id="installBtn" style="display:none;">📲 Instalar App</a>
+
 </div>
 
-<!-- MENU -->
-<a class="btn" href="https://wa.me/5593984032129">
-  📢 Anuncie sua empresa
-</a>
-
-<a class="btn menu" href="vagas/index.html">
-  💼 Vagas de Emprego
-</a>
-
-<a class="btn install" id="installBtn">
-  📲 Instalar App Progresso Online
-</a>
-
-</div>
-
-<footer>
-© 2026 - Progresso Online - Cleoson Harthopff
-</footer>
+<footer>© 2026 • Progresso Online</footer>
 
 <script>
-// LIMPAR HOME
-function limparHome(){
-  document.querySelectorAll('.empresa').forEach(e=>e.style.display='none');
-  document.querySelectorAll('.vaga').forEach(v=>v.style.display='block');
-}
-
-// FILTRO
 function mostrar(cat){
   document.querySelectorAll('.empresa').forEach(e=>{
-    e.style.display = e.classList.contains(cat) ? 'block' : 'none';
+    e.classList.toggle('ativo', e.classList.contains(cat));
   });
 }
 
-// BUSCA
-buscaEmpresa.oninput = e=>{
-  const termo = e.target.value.toLowerCase();
+document.getElementById('buscaEmpresa').oninput = e=>{
+  const t=e.target.value.toLowerCase();
   document.querySelectorAll('.empresa').forEach(emp=>{
-    emp.style.display = emp.innerText.toLowerCase().includes(termo)?'block':'none';
+    emp.classList.toggle('ativo', emp.innerText.toLowerCase().includes(t));
   });
-  if(!termo) limparHome();
 };
 
-// SLIDER
-let slideIndex=0;
-setInterval(()=>{
-  const slides=document.querySelectorAll('.slide');
-  slides.forEach(s=>s.style.display='none');
-  if(slides.length){
-    slideIndex=(slideIndex+1)%slides.length;
-    slides[slideIndex].style.display='block';
-  }
-},4000);
-
-// INIT
-document.addEventListener('DOMContentLoaded',limparHome);
-
-// INSTALL APP
+/* PWA */
 let deferredPrompt;
-installBtn.onclick=()=>{
-  if(deferredPrompt){
-    deferredPrompt.prompt();
-    deferredPrompt=null;
-  }else{
-    alert(
-      'Para instalar:\n' +
-      '1 Abra no Chrome\n' +
-      '2 Menu ⋮\n' +
-      '3 Adicionar à tela inicial'
-    );
-  }
-};
+const installBtn=document.getElementById('installBtn');
+
 window.addEventListener('beforeinstallprompt',e=>{
   e.preventDefault();
   deferredPrompt=e;
+  installBtn.style.display='block';
+  installBtn.onclick=()=>{
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(()=>installBtn.style.display='none');
+  };
 });
+
+if('serviceWorker'in navigator){
+  navigator.serviceWorker.register('service-worker.js');
+}
 </script>
 
 </body>
