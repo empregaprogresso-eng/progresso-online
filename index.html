@@ -18,15 +18,15 @@ body{
   padding-bottom:90px;
 }
 
-/* ===== HEADER COM FUNDO ANIMADO (AJUSTADO) ===== */
+/* ===== HEADER REDUZIDO + FUNDO ANIMADO ===== */
 header{
   position:relative;
   z-index:1;
-  padding:26px 16px 52px; /* ⬅️ MENOR ALTURA */
+  padding:24px 16px 48px;
   text-align:center;
   color:#fff;
-  border-bottom-left-radius:24px;
-  border-bottom-right-radius:24px;
+  border-bottom-left-radius:22px;
+  border-bottom-right-radius:22px;
 
   background:
     linear-gradient(
@@ -37,7 +37,7 @@ header{
     url('img/bg-header.jpg');
 
   background-size:200% 200%;
-  animation:fundoMove 15s ease infinite;
+  animation:fundoMove 14s ease infinite;
 }
 
 @keyframes fundoMove{
@@ -47,9 +47,9 @@ header{
 }
 
 header img{
-  max-height:140px; /* ⬅️ LOGO MENOR */
+  max-height:120px;
   margin-bottom:4px;
-  filter:drop-shadow(0 6px 14px rgba(0,0,0,.35));
+  filter:drop-shadow(0 4px 10px rgba(0,0,0,.35));
 }
 
 header h1{
@@ -62,12 +62,12 @@ header p{
   opacity:.95;
 }
 
-/* ===== SEARCH CARD FLUTUANTE ===== */
+/* ===== BUSCA FLUTUANTE (CARD) ===== */
 .search-card{
   position:relative;
   z-index:10;
   background:#fff;
-  margin:-32px auto 26px; /* ⬅️ encaixe perfeito */
+  margin:-28px auto 28px;
   padding:16px;
   border-radius:18px;
   max-width:900px;
@@ -91,7 +91,7 @@ header p{
   margin:auto;
 }
 
-/* CATEGORIAS */
+/* ===== CATEGORIAS ===== */
 .categories{
   display:grid;
   grid-template-columns:repeat(2,1fr);
@@ -108,7 +108,7 @@ header p{
   box-shadow:0 4px 14px rgba(0,0,0,.1);
 }
 
-/* CARDS */
+/* ===== CARDS ===== */
 .card{
   background:#fff;
   padding:16px;
@@ -133,7 +133,7 @@ header p{
   border-radius:14px;
 }
 
-/* SELO PREMIUM */
+/* ===== SELO PREMIUM ===== */
 .selo{
   position:absolute;
   top:12px;
@@ -146,10 +146,10 @@ header p{
   font-weight:700;
 }
 
-/* SLIDER */
+/* ===== SLIDER ===== */
 .slide{display:none}
 
-/* NAV BAR */
+/* ===== NAV BAR APP ===== */
 .nav-app{
   position:fixed;
   bottom:0;
@@ -167,6 +167,7 @@ header p{
   text-align:center;
 }
 
+/* ===== FOOTER ===== */
 footer{
   text-align:center;
   padding:18px;
@@ -186,13 +187,14 @@ a{text-decoration:none;color:inherit}
   <p>Guia digital de empresas de Novo Progresso</p>
 </header>
 
-<!-- 🔍 BUSCA FLUTUANTE -->
+<!-- 🔍 BUSCA -->
 <div class="search-card">
   <input placeholder="🔍 Buscar empresas ou serviços">
 </div>
 
 <div class="container">
 
+<!-- CATEGORIAS -->
 <div class="categories">
   <a href="categorias/alimentacao.html"><div class="cat">🍔 Alimentação</div></a>
   <a href="categorias/saude.html"><div class="cat">🏥 Saúde</div></a>
@@ -203,6 +205,7 @@ a{text-decoration:none;color:inherit}
   <a href="categorias/transporte.html"><div class="cat">🚕 Transporte</div></a>
 </div>
 
+<!-- DESTAQUES -->
 <a href="empresas/brasil-drive.html">
   <div class="card slide">
     <span class="selo">PRÊMIO</span>
@@ -216,6 +219,7 @@ a{text-decoration:none;color:inherit}
 
 </div>
 
+<!-- NAV -->
 <div class="nav-app">
   <a href="index.html">🏠 Início</a>
   <a href="vagas/index.html">💼 Vagas</a>
@@ -228,6 +232,7 @@ a{text-decoration:none;color:inherit}
 </footer>
 
 <script>
+// SLIDER
 let slideIndex=0;
 setInterval(()=>{
   const slides=document.querySelectorAll('.slide');
@@ -238,6 +243,7 @@ setInterval(()=>{
   }
 },4000);
 
+// CONTADOR
 fetch('https://api.countapi.xyz/hit/progresso-online/visitas')
 .then(r=>r.json())
 .then(d=>document.getElementById('totalAcessos').innerText=d.value)
