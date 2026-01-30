@@ -18,29 +18,50 @@ body{
   padding-bottom:80px;
 }
 
-/* ===== HEADER APP ===== */
+/* ===== HEADER COM FUNDO ANIMADO ===== */
 header{
-  background:linear-gradient(135deg,#0b5ed7,#2fb344);
-  padding:28px 16px 40px;
+  position:relative;
+  padding:45px 16px 55px;
   text-align:center;
   color:#fff;
   border-bottom-left-radius:24px;
   border-bottom-right-radius:24px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(11,94,215,0.85),
+      rgba(47,179,68,0.85)
+    ),
+    url('img/bg-header.jpg');
+
+  background-size:200% 200%;
+  background-position:center;
+  animation:fundoMove 15s ease infinite;
+}
+
+@keyframes fundoMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
 }
 
 header img{
   max-height:250px;
-  margin-bottom:1px;
+  margin-bottom:2px;
+  filter:drop-shadow(0 6px 14px rgba(0,0,0,.4));
 }
 
 header h1{
-  margin:1px 0 1px;
+  margin:2px 0;
   font-size:22px;
+  text-shadow:0 2px 6px rgba(0,0,0,.4);
 }
 
 header p{
   font-size:14px;
   opacity:.95;
+  text-shadow:0 1px 4px rgba(0,0,0,.35);
 }
 
 /* ===== CONTAINER ===== */
@@ -176,12 +197,10 @@ a{text-decoration:none;color:inherit}
 
 <div class="container">
 
-<!-- BUSCA -->
 <div class="search">
   <input placeholder="🔍 Buscar empresas ou serviços">
 </div>
 
-<!-- CATEGORIAS -->
 <div class="categories">
   <a href="categorias/alimentacao.html"><div class="cat">🍔 Alimentação</div></a>
   <a href="categorias/saude.html"><div class="cat">🏥 Saúde</div></a>
@@ -192,7 +211,6 @@ a{text-decoration:none;color:inherit}
   <a href="categorias/transporte.html"><div class="cat">🚕 Transporte</div></a>
 </div>
 
-<!-- DESTAQUES PREMIUM -->
 <a href="empresas/bls.html">
   <div class="card slide">
     <span class="selo">PRÊMIO</span>
@@ -228,7 +246,6 @@ a{text-decoration:none;color:inherit}
 
 </div>
 
-<!-- NAV APP -->
 <div class="nav-app">
   <a href="index.html">🏠 Início</a>
   <a href="vagas/index.html">💼 Vagas</a>
@@ -241,7 +258,6 @@ a{text-decoration:none;color:inherit}
 </footer>
 
 <script>
-// SLIDER
 let slideIndex=0;
 setInterval(()=>{
   const slides=document.querySelectorAll('.slide');
@@ -252,7 +268,6 @@ setInterval(()=>{
   }
 },4000);
 
-// CONTADOR
 fetch('https://api.countapi.xyz/hit/progresso-online/visitas')
 .then(r=>r.json())
 .then(d=>document.getElementById('totalAcessos').innerText=d.value)
