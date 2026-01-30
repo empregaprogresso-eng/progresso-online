@@ -15,54 +15,51 @@ body{
   font-family:'Segoe UI',Arial,sans-serif;
   background:#f2f4f7;
   color:#333;
+  padding-bottom:80px;
 }
 
-/* ===== HEADER ===== */
+/* ===== HEADER APP ===== */
 header{
   background:linear-gradient(135deg,#0b5ed7,#2fb344);
-  padding:50px 20px;
+  padding:28px 16px 40px;
   text-align:center;
   color:#fff;
-  border-bottom-left-radius:28px;
-  border-bottom-right-radius:28px;
+  border-bottom-left-radius:24px;
+  border-bottom-right-radius:24px;
 }
 
 header img{
-  max-height:170px;
-  animation:pulse 2.5s infinite;
-}
-
-@keyframes pulse{
-  50%{transform:scale(1.05)}
+  max-height:90px;
+  margin-bottom:8px;
 }
 
 header h1{
-  margin:10px 0 5px;
-  font-size:28px;
+  margin:4px 0;
+  font-size:22px;
 }
 
 header p{
-  font-size:15px;
+  font-size:14px;
   opacity:.95;
 }
 
 /* ===== CONTAINER ===== */
 .container{
-  padding:20px;
+  padding:16px;
   max-width:1000px;
-  margin:-35px auto 0;
+  margin:-28px auto 0;
 }
 
 /* BUSCA */
 .search input{
   width:100%;
-  padding:16px;
+  padding:15px;
   border-radius:14px;
   border:none;
   outline:none;
   font-size:15px;
-  box-shadow:0 6px 18px rgba(0,0,0,.08);
-  margin-bottom:20px;
+  box-shadow:0 6px 18px rgba(0,0,0,.12);
+  margin-bottom:22px;
 }
 
 /* CATEGORIAS */
@@ -75,26 +72,20 @@ header p{
 
 .cat{
   background:#fff;
-  padding:18px;
+  padding:16px;
   border-radius:16px;
   text-align:center;
   font-weight:600;
-  cursor:pointer;
-  box-shadow:0 6px 18px rgba(0,0,0,.08);
-  transition:.2s;
-}
-
-.cat:hover{
-  transform:translateY(-3px);
+  box-shadow:0 4px 14px rgba(0,0,0,.1);
 }
 
 /* CARDS */
 .card{
   background:#fff;
-  padding:18px;
+  padding:16px;
   border-radius:18px;
   margin-top:18px;
-  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  box-shadow:0 6px 18px rgba(0,0,0,.1);
   position:relative;
 }
 
@@ -105,24 +96,25 @@ header p{
 }
 
 .logo-empresa{
-  width:72px;
-  height:72px;
+  width:64px;
+  height:64px;
   object-fit:contain;
   background:#f4f6f8;
   padding:8px;
-  border-radius:16px;
+  border-radius:14px;
 }
 
+/* SELO PREMIUM */
 .selo{
   position:absolute;
   top:12px;
   right:12px;
-  background:linear-gradient(45deg,#0b5ed7,#2fb344);
-  color:#fff;
+  background:linear-gradient(45deg,#FFD700,#FF9800);
+  color:#000;
   padding:6px 14px;
   border-radius:20px;
   font-size:12px;
-  animation:pulse 1.5s infinite;
+  font-weight:700;
 }
 
 /* BOTÕES */
@@ -136,23 +128,41 @@ header p{
   border-radius:14px;
   text-decoration:none;
   font-weight:600;
-  box-shadow:0 6px 16px rgba(0,0,0,.12);
 }
 
 .btn.menu{background:#0b5ed7}
 .btn.install{background:#0b5ed7}
 
+/* SLIDER */
+.slide{display:none}
+
+/* NAV BAR APP */
+.nav-app{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:#fff;
+  display:flex;
+  justify-content:space-around;
+  padding:10px 0;
+  box-shadow:0 -4px 16px rgba(0,0,0,.15);
+}
+
+.nav-app a{
+  font-size:13px;
+  text-align:center;
+}
+
+/* FOOTER */
 footer{
   text-align:center;
-  padding:25px 15px;
+  padding:18px;
   color:#777;
-  font-size:14px;
+  font-size:13px;
 }
 
 a{text-decoration:none;color:inherit}
-
-/* SLIDER */
-.slide{display:none}
 </style>
 </head>
 
@@ -161,17 +171,17 @@ a{text-decoration:none;color:inherit}
 <header>
   <img src="logo.png" alt="Progresso Online">
   <h1>Progresso Online</h1>
-  <p>Guia digital de empresas de Novo Progresso e região</p>
+  <p>Guia digital de empresas de Novo Progresso</p>
 </header>
 
 <div class="container">
 
 <!-- BUSCA -->
 <div class="search">
-  <input placeholder="Busque empresas dentro das categorias">
+  <input placeholder="🔍 Buscar empresas ou serviços">
 </div>
 
-<!-- CATEGORIAS (ABREM NOVA PÁGINA) -->
+<!-- CATEGORIAS -->
 <div class="categories">
   <a href="categorias/alimentacao.html"><div class="cat">🍔 Alimentação</div></a>
   <a href="categorias/saude.html"><div class="cat">🏥 Saúde</div></a>
@@ -182,14 +192,13 @@ a{text-decoration:none;color:inherit}
   <a href="categorias/transporte.html"><div class="cat">🚕 Transporte</div></a>
 </div>
 
-<!-- EMPRESAS PARCEIRAS (DESTAQUE HOME) -->
-
+<!-- DESTAQUES PREMIUM -->
 <a href="empresas/bls.html">
   <div class="card slide">
-    <span class="selo">PARCEIRA</span>
+    <span class="selo">PRÊMIO</span>
     <div class="empresa-topo">
       <img src="logos/bls.png" class="logo-empresa">
-      <strong>BLS REPRESENTAÇÕES</strong>
+      <strong>BLS Representações</strong>
     </div>
     <p>Conservas, temperos e condimentos.</p>
   </div>
@@ -197,52 +206,42 @@ a{text-decoration:none;color:inherit}
 
 <a href="empresas/online.html">
   <div class="card slide">
-    <span class="selo">PARCEIRA</span>
+    <span class="selo">PRÊMIO</span>
     <div class="empresa-topo">
       <img src="logos/online.png" class="logo-empresa">
-      <strong>Online - Infraestrutura e Tecnologia</strong>
+      <strong>Online Tecnologia</strong>
     </div>
     <p>Soluções em informática.</p>
   </div>
 </a>
 
-  <a href="empresas/brasil-drive.html">
+<a href="empresas/brasil-drive.html">
   <div class="card slide">
-    <span class="selo">PARCEIRA</span>
-
+    <span class="selo">PRÊMIO</span>
     <div class="empresa-topo">
       <img src="logos/drive.png" class="logo-empresa">
       <strong>Brasil Drive</strong>
     </div>
-
-    <p>Mobilidade urbana e transporte por aplicativo.</p>
+    <p>Mobilidade urbana por aplicativo.</p>
   </div>
-</a>
-
-  <!-- MENU -->
-<a class="btn" href="https://wa.me/5593984032129">
-  📢 Anuncie sua empresa
-</a>
-
-<a class="btn menu" href="vagas/index.html">
-  💼 Vagas de Emprego
-</a>
-
-<a class="btn install" id="installBtn">
-  📲 Instalar App Progresso Online
 </a>
 
 </div>
 
+<!-- NAV APP -->
+<div class="nav-app">
+  <a href="index.html">🏠 Início</a>
+  <a href="vagas/index.html">💼 Vagas</a>
+  <a href="https://wa.me/5593984032129">📢 Anunciar</a>
+</div>
+
 <footer>
-  <div style="margin-bottom:6px;">
-    👀 Acessos ao guia: <strong id="totalAcessos">...</strong>
-  </div>
-  © 2026 - Progresso Online • <strong>Cleoson Harthopff</strong>
+👀 Acessos: <strong id="totalAcessos">...</strong><br>
+© 2026 - Progresso Online • <strong>Cleoson Harthopff</strong>
 </footer>
 
 <script>
-// SLIDER HOME (APENAS DESTAQUES)
+// SLIDER
 let slideIndex=0;
 setInterval(()=>{
   const slides=document.querySelectorAll('.slide');
