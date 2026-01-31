@@ -18,7 +18,7 @@ body{
   padding-bottom:90px;
 }
 
-/* ===== HEADER REDUZIDO + FUNDO ANIMADO ===== */
+/* ===== HEADER ===== */
 header{
   position:relative;
   z-index:1;
@@ -40,11 +40,7 @@ header{
   100%{background-position:0% 50%}
 }
 
-header img{
-  max-height:180px;
-  filter:drop-shadow(0 4px 10px rgba(0,0,0,.35));
-}
-
+header img{max-height:180px}
 header h1{margin:4px 0 2px;font-size:22px}
 header p{font-size:14px;opacity:.95}
 
@@ -65,7 +61,6 @@ header p{font-size:14px;opacity:.95}
   padding:15px;
   border-radius:14px;
   border:none;
-  outline:none;
   background:#f4f6f8;
 }
 
@@ -142,7 +137,6 @@ header p{font-size:14px;opacity:.95}
   text-align:center;
   border-radius:14px;
   font-weight:600;
-  box-shadow:0 6px 18px rgba(0,0,0,.18);
   cursor:pointer;
 }
 
@@ -194,6 +188,29 @@ a{text-decoration:none;color:inherit}
   <a href="categorias/transporte.html"><div class="cat">🚕 Transporte</div></a>
 </div>
 
+<!-- SLIDES -->
+<a href="empresas/bls.html">
+  <div class="card slide">
+    <span class="selo">PRÊMIO</span>
+    <div class="empresa-topo">
+      <img src="logos/bls.png" class="logo-empresa">
+      <strong>BLS Representações</strong>
+    </div>
+    <p>Conservas, temperos e condimentos.</p>
+  </div>
+</a>
+
+<a href="empresas/online.html">
+  <div class="card slide">
+    <span class="selo">PRÊMIO</span>
+    <div class="empresa-topo">
+      <img src="logos/online.png" class="logo-empresa">
+      <strong>Online Tecnologia</strong>
+    </div>
+    <p>Soluções em informática.</p>
+  </div>
+</a>
+
 <a href="empresas/brasil-drive.html">
   <div class="card slide">
     <span class="selo">PRÊMIO</span>
@@ -205,7 +222,6 @@ a{text-decoration:none;color:inherit}
   </div>
 </a>
 
-<!-- BOTÃO INSTALAR -->
 <div class="btn-install" id="installBtn">📲 Instalar App Progresso Online</div>
 
 </div>
@@ -222,33 +238,41 @@ a{text-decoration:none;color:inherit}
 </footer>
 
 <script>
-// SLIDER
-let slideIndex=0;
-setInterval(()=>{
+// ===== SLIDER CORRIGIDO =====
+document.addEventListener('DOMContentLoaded',()=>{
   const slides=document.querySelectorAll('.slide');
+  let i=0;
+  if(!slides.length) return;
+
   slides.forEach(s=>s.style.display='none');
-  if(slides.length){
-    slideIndex=(slideIndex+1)%slides.length;
-    slides[slideIndex].style.display='block';
+  slides[0].style.display='block';
+
+  if(slides.length>1){
+    setInterval(()=>{
+      slides[i].style.display='none';
+      i=(i+1)%slides.length;
+      slides[i].style.display='block';
+    },4000);
   }
-},4000);
+});
 
-// CONTADOR
-fetch('https://api.countapi.xyz/hit/progresso-online/visitas')
+// ===== CONTADOR =====
+fetch('https://api.countapi.xyz/hit/progressoonlineapp/visitas')
 .then(r=>r.json())
-.then(d=>document.getElementById('totalAcessos').innerText=d.value);
+.then(d=>document.getElementById('totalAcessos').innerText=d.value)
+.catch(()=>document.getElementById('totalAcessos').innerText='—');
 
-// INSTALL PWA
+// ===== INSTALL PWA =====
 let deferredPrompt;
 const installBtn=document.getElementById('installBtn');
 
-window.addEventListener('beforeinstallprompt',(e)=>{
+window.addEventListener('beforeinstallprompt',e=>{
   e.preventDefault();
   deferredPrompt=e;
   installBtn.style.display='block';
 });
 
-installBtn.onclick=async()=>{
+installBtn.onclick=()=>{
   if(!deferredPrompt) return;
   deferredPrompt.prompt();
   deferredPrompt=null;
