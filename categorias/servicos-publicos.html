@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Serviços Públicos - Progresso Online</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:'Segoe UI',Arial;
+  background:#f2f4f7;
+  color:#333;
+}
+
+/* HEADER */
+header{
+  background:linear-gradient(135deg,#0b5ed7,#2fb344);
+  padding:40px 20px;
+  text-align:center;
+  color:#fff;
+  border-bottom-left-radius:24px;
+  border-bottom-right-radius:24px;
+}
+
+header h1{margin:0;font-size:24px}
+header p{margin-top:6px;font-size:14px;opacity:.95}
+
+/* CONTAINER */
+.container{
+  padding:20px;
+  max-width:900px;
+  margin:auto;
+}
+
+/* SUBCATEGORIAS */
+.subcategorias{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+  margin-bottom:25px;
+}
+
+.subcat{
+  background:#fff;
+  padding:18px;
+  border-radius:16px;
+  text-align:center;
+  font-weight:600;
+  box-shadow:0 4px 14px rgba(0,0,0,.1);
+}
+
+/* LISTA EMPRESAS / ÓRGÃOS */
+.lista{
+  margin-top:10px;
+}
+
+.card{
+  background:#fff;
+  padding:18px;
+  border-radius:16px;
+  margin-top:16px;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+}
+
+.btn{
+  display:block;
+  margin-top:25px;
+  padding:14px;
+  background:#0b5ed7;
+  color:#fff;
+  text-align:center;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:600;
+}
+
+a{text-decoration:none;color:inherit}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🏛️ Serviços Públicos</h1>
+  <p>Órgãos e instituições públicas de Novo Progresso</p>
+</header>
+
+<div class="container">
+
+  <!-- SUBCATEGORIAS -->
+  <div class="subcategorias">
+    <div class="subcat">🏥 Saúde</div>
+    <div class="subcat">🏫 Educação</div>
+    <div class="subcat">🏛️ Prefeitura</div>
+    <div class="subcat">🤝 Assistência Social</div>
+  </div>
+
+  <!-- LISTAGEM (EXEMPLO) -->
+  <div class="lista">
+    <div class="card">
+      <strong>📍 Em breve</strong>
+      <p>Os órgãos públicos desta categoria aparecerão aqui.</p>
+    </div>
+  </div>
+
+  <a class="btn" href="../index.html">⬅ Voltar ao início</a>
+
+</div>
+
+</body>
+</html>
