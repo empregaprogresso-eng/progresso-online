@@ -32,7 +32,7 @@ header p{font-size:14px;opacity:.95}
 
 .container{
   padding:20px;
-  max-width:900px;
+  max-width:1000px;
   margin:auto;
 }
 
@@ -42,6 +42,7 @@ header p{font-size:14px;opacity:.95}
   border-radius:18px;
   box-shadow:0 6px 18px rgba(0,0,0,.1);
   position:relative;
+  margin-bottom:20px;
 }
 
 .selo{
@@ -71,24 +72,49 @@ header p{font-size:14px;opacity:.95}
 .insta{background:#E1306C}
 .maps{background:#0b5ed7}
 .voltar{background:#555}
+
+/* ===== GALERIA ===== */
+.galeria{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:16px;
+  margin-top:20px;
+}
+
+.galeria img{
+  width:100%;
+  max-height:420px;
+  object-fit:contain; /* NÃO CORTA */
+  background:#f4f6f8;
+  border-radius:16px;
+  padding:10px;
+  box-shadow:0 4px 14px rgba(0,0,0,.1);
+}
+
+@media(min-width:768px){
+  .galeria{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
 </style>
 </head>
 
 <body>
 
 <header>
-  <img src="../logos/wnp.png" alt="WNP Internet">
+  <img src="../logos/wnp.jpg" alt="WNP Internet">
   <h2>WNP – Provedor de Internet</h2>
   <p>Provedor de internet. Acesse um mundo de possibilidades.</p>
 </header>
 
 <div class="container">
+
   <div class="card">
     <span class="selo">🌐 INTERNET OFICIAL</span>
 
     <p>
       A <strong>WNP</strong> oferece conexão de alta qualidade, estabilidade e suporte
-      para você navegar sem limites.
+      para você navegar, trabalhar e se conectar sem limites.
     </p>
 
     <a class="btn whats" href="https://wa.me/559335281212" target="_blank">
@@ -102,6 +128,18 @@ header p{font-size:14px;opacity:.95}
     <a class="btn maps" href="https://www.google.com/maps/search/?api=1&query=R.+Santos+Dumont,+295+-+Jardim+Planalto,+Novo+Progresso" target="_blank">
       📍 Como chegar
     </a>
+  </div>
+
+  <!-- 📸 GALERIA DE FOTOS -->
+  <div class="card">
+    <h3>📸 Galeria</h3>
+
+    <div class="galeria">
+      <!-- Troque os nomes das imagens -->
+      <img src="../galeria/wnp1.jpg" alt="WNP Internet">
+      <img src="../galeria/wnp2.jpg" alt="WNP Internet">
+      <img src="../galeria/wnp3.jpg" alt="WNP Internet">
+    </div>
   </div>
 
   <a class="btn voltar" href="../index.html">⬅ Voltar ao guia</a>
