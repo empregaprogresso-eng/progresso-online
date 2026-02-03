@@ -21,7 +21,6 @@ body{
 /* ===== HEADER ===== */
 header{
   position:relative;
-  z-index:1;
   padding:24px 16px 48px;
   text-align:center;
   color:#fff;
@@ -113,6 +112,7 @@ header p{font-size:14px;opacity:.95}
   border-radius:14px;
 }
 
+/* ===== SELOS ===== */
 .selo{
   position:absolute;
   top:12px;
@@ -120,7 +120,31 @@ header p{font-size:14px;opacity:.95}
   background:linear-gradient(45deg,#FFD700,#FF9800);
   padding:6px 14px;
   border-radius:20px;
-  font-size:12px;
+  font-size:11px;
+  font-weight:700;
+}
+
+.selo-internet{
+  position:absolute;
+  top:44px;
+  right:12px;
+  background:linear-gradient(45deg,#0b5ed7,#2fb344);
+  color:#fff;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:700;
+}
+
+.selo-categoria{
+  position:absolute;
+  top:76px;
+  right:12px;
+  background:#0b5ed7;
+  color:#fff;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:11px;
   font-weight:700;
 }
 
@@ -189,7 +213,8 @@ a{text-decoration:none;color:inherit}
   <a href="categorias/servicos-publicos.html"><div class="cat">🏛️ Serviços Públicos</div></a>
 </div>
 
-<!-- SLIDES -->
+<!-- ===== SLIDER HOME ===== -->
+
 <a href="empresas/bls.html">
   <div class="card slide">
     <span class="selo">PRÊMIO</span>
@@ -223,6 +248,21 @@ a{text-decoration:none;color:inherit}
   </div>
 </a>
 
+<!-- ✅ WNP - SERVIÇOS -->
+<a href="empresas/wnp.html">
+  <div class="card slide">
+    <span class="selo">PRÊMIO</span>
+    <span class="selo-internet">🌐 INTERNET OFICIAL</span>
+    <span class="selo-categoria">💻 SERVIÇOS</span>
+
+    <div class="empresa-topo">
+      <img src="logos/wnp.png" class="logo-empresa">
+      <strong>WNP</strong>
+    </div>
+    <p>Provedor de internet. Acesse um mundo de possibilidades.</p>
+  </div>
+</a>
+
 <div class="btn-install" id="installBtn">📲 Instalar App Progresso Online</div>
 
 </div>
@@ -239,16 +279,13 @@ a{text-decoration:none;color:inherit}
 </footer>
 
 <script>
-// ===== SLIDER CORRIGIDO =====
+// ===== SLIDER =====
 document.addEventListener('DOMContentLoaded',()=>{
   const slides=document.querySelectorAll('.slide');
   let i=0;
-  if(!slides.length) return;
-
   slides.forEach(s=>s.style.display='none');
-  slides[0].style.display='block';
-
-  if(slides.length>1){
+  if(slides.length){
+    slides[0].style.display='block';
     setInterval(()=>{
       slides[i].style.display='none';
       i=(i+1)%slides.length;
