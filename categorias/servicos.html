@@ -4,25 +4,129 @@
 <meta charset="UTF-8">
 <title>Serviços - Progresso Online</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
-body{margin:0;font-family:Segoe UI,Arial;background:#f2f4f7}
-header{background:linear-gradient(135deg,#0b5ed7,#2fb344);padding:40px 20px;text-align:center;color:#fff}
-.container{padding:20px;max-width:900px;margin:auto}
-.card{background:#fff;padding:18px;border-radius:16px;margin-top:16px;box-shadow:0 6px 18px rgba(0,0,0,.08)}
-.btn{display:block;margin-top:20px;padding:14px;background:#0b5ed7;color:#fff;text-align:center;border-radius:12px;text-decoration:none;font-weight:600}
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:'Segoe UI',Arial;
+  background:#f2f4f7;
+  color:#333;
+}
+
+/* HEADER */
+header{
+  background:linear-gradient(135deg,#0b5ed7,#2fb344);
+  padding:40px 20px;
+  text-align:center;
+  color:#fff;
+  border-bottom-left-radius:24px;
+  border-bottom-right-radius:24px;
+}
+
+header h1{margin:0;font-size:24px}
+header p{margin-top:6px;font-size:14px;opacity:.95}
+
+/* CONTAINER */
+.container{
+  padding:20px;
+  max-width:900px;
+  margin:auto;
+}
+
+/* CARD */
+.card{
+  background:#fff;
+  padding:18px;
+  border-radius:16px;
+  margin-top:16px;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  position:relative;
+}
+
+.empresa-topo{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.logo-empresa{
+  width:70px;
+  height:70px;
+  object-fit:contain;
+  background:#f4f6f8;
+  padding:8px;
+  border-radius:14px;
+}
+
+/* SELOS */
+.selo{
+  position:absolute;
+  top:12px;
+  right:12px;
+  background:linear-gradient(45deg,#FFD700,#FF9800);
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:700;
+}
+
+.selo-internet{
+  position:absolute;
+  top:44px;
+  right:12px;
+  background:linear-gradient(45deg,#0b5ed7,#2fb344);
+  color:#fff;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:700;
+}
+
+/* BOTÃO */
+.btn{
+  display:block;
+  margin-top:24px;
+  padding:14px;
+  background:#0b5ed7;
+  color:#fff;
+  text-align:center;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:600;
+}
+
+a{text-decoration:none;color:inherit}
 </style>
 </head>
+
 <body>
 
 <header>
-<h1>💻 Serviços</h1>
-<p>Empresas cadastradas nesta categoria</p>
+  <h1>💻 Serviços</h1>
+  <p>Empresas prestadoras de serviços</p>
 </header>
 
 <div class="container">
-<p>As empresas desta categoria aparecerão aqui.</p>
 
-<a class="btn" href="../index.html">⬅ Voltar ao início</a>
+  <!-- WNP -->
+  <a href="../empresas/wnp.html">
+    <div class="card">
+      <span class="selo">PARCEIRA</span>
+      <span class="selo-internet">🌐 INTERNET OFICIAL</span>
+
+      <div class="empresa-topo">
+        <img src="../logos/wnp.png" class="logo-empresa" alt="WNP">
+        <strong>WNP</strong>
+      </div>
+
+      <p>Provedor de internet. Acesse um mundo de possibilidades.</p>
+    </div>
+  </a>
+
+  <a class="btn" href="../index.html">⬅ Voltar ao início</a>
+
 </div>
 
 </body>
